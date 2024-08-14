@@ -62,17 +62,13 @@ class BlogDetailView(DetailView):
         return context
 
 
-class HomeView(View):
-    def get(self, request):
-        context = {}
-        return render(request, "index.html", context)
-
-
 class BlogListView(ListView):
     model = models.Blog
     template_name = "blog.html"
     context_object_name = "objects"
     paginate_by = 1
+
+
 
 class AddComment(View):
 	def post(self, request, blog_id):
