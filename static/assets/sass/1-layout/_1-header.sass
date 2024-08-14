@@ -1,0 +1,252 @@
+.nav-ol
+    position: fixed
+    top: 0
+    left: 0
+    height: 100%
+    width: 1000%
+    background-color: rgba(0,0,0,.5)
+    opacity: 0
+    visibility: hidden
+    z-index: 999
+    &.show
+        opacity: 1
+        visibility: visible
+
+.bizagn--header
+    transition: .4s ease-in-out
+    .bizagn--sticky-nav
+        &.sticky-header-true
+            position: absolute
+            top: 0
+            width: 100%
+            z-index: 99
+            &.sticky-nav
+                position: fixed
+                top: 0
+                width: 100%
+                transition: .4s ease-in-out
+                box-shadow: 0px 0px 2px #ccc
+                .bizagn--nav-menu > ul > li > a 
+                    padding-top: 25px
+                    padding-bottom: 25px
+                    transition: .4s ease-in-out
+                    +tab
+                        padding: 15px 25px
+                        background-color: #fff
+                        border-bottom: 1px solid rgba(204, 204, 204, 0.2)
+        &.bg-color
+            background-color: #fff
+            transition: .4s ease-in-out
+    +tab
+        position: relative
+    
+/* NAV MENU */
+.bizagn--nav-menu
+    display: inline-block
+    z-index: 9
+    #menu-button
+        display: none
+        cursor: pointer
+        padding: 0px 0px
+        margin: 25px 0px
+        font-weight: 700
+        padding-top: 4px
+        +tab
+            display: block
+    ul
+        list-style: none
+        li
+            display: block
+            position: relative
+            a
+                color: #141414
+                font-weight: 700
+                display: block
+                font-size: 16px
+                &:hover
+                    color: $hover
+            &.menu-item-has-children
+                &:hover
+                    > .sub-menu
+                        opacity: 1
+                        visibility: visible
+                        transition: .4s
+                .submenu-button
+                    display: none
+                    +tab
+                        display: block
+                        position: absolute
+                        top: 0
+                        right: 0
+                        height: 50px
+                        width: 50px
+                        line-height: 50px
+                        text-align: center
+                        cursor: pointer
+                .sub-menu
+                    position: absolute
+                    top: 0
+                    left: 100%
+                    width: 205px
+                    box-shadow: 0px 0px 5px rgba(0,0,0,.1)
+                    padding: 27.5px 0px
+                    background-color: #fff
+                    opacity: 0
+                    visibility: hidden
+                    +tab
+                        position: relative
+                        margin: 0
+                        opacity: 1
+                        visibility: visible
+                        box-shadow: none
+                        width: 100%
+                        padding: 0
+                        padding-left: 25px
+                    li
+                        display: block
+                        a
+                            padding: 7.5px 30px
+                            font-size: 14px
+    > ul
+        +tab
+            position: absolute
+            top: 100%
+            left: 0
+            width: 100%
+            border-top: 1px solid #f1f1f1
+            background-color: #fff
+        > li
+            display: inline-block
+            +tab
+                display: block
+            &.menu-item-has-children
+                > .sub-menu
+                    top: 100%
+                    left: 0
+            > a
+                padding: 42.5px 25px
+                +tab
+                    padding: 15px 25px
+                    background-color: #fff
+                    border-bottom: 1px solid #f5f5f5
+
+/* OFF CANVAS BUTTON */
+.bizagn--mobile-nav
+    display: inline-block
+    ul
+        li
+            .bizagn--off-canvas-toggle
+                margin-left: 25px
+                cursor: pointer
+                &:hover
+                    .line
+                        &.two
+                            width: 30px
+                .line
+                    height: 3px
+                    width: 30px
+                    background-color: #000000
+                    display: block
+                    margin-left: auto
+                    margin-bottom: 5px
+                    transition: .4s ease
+                    &:last-child
+                        margin-bottom: 0
+                    +tab
+                        margin-bottom: 3px
+                    &.two
+                        width: 20px
+
+/* OFF CANVAS */
+.bizagn--off-canvas
+    position: fixed
+    width: 360px
+    height: 100vh   
+    right: -360px
+    top: 0
+    background: #ffffff
+    transition:.4s ease-out
+    z-index: 999
+    +mobileSm
+        width: 100%
+        right: -100%
+    &.show
+        right: 0px
+        transition:.4s ease-in-out
+        z-index: 999
+    .bizagn--off-canvas-cover
+        position: absolute
+        top: 0
+        left: 0
+        height: 100%
+        width: 100%
+        padding: 100px 40px 60px 40px
+        overflow-y: auto
+        .bizagn--off-canvas-close
+            position: absolute
+            top: 50px
+            right: 40px
+            font-family: $vollk
+            font-weight: 700
+            cursor: pointer
+            i
+                margin-left: 12px
+        .bizagn--off-canvas-menu
+            margin-bottom: 65px
+            ul
+                li
+                    &.menu-item-has-children
+                        position: relative
+                        > a 
+                            padding-right: 40px
+                        .submenu-button
+                            position: absolute
+                            top: 0
+                            right: 0
+                            height: 40px
+                            line-height: 40px
+                            width: 40px
+                            text-align: center
+                        .sub-menu
+                            margin-left: 15px
+                            transition: .4s ease-in-out
+                            > li > a
+                                font-size: 16px
+                    a
+                        font-size: 24px
+                        font-family: $vollk
+                        font-weight: 700
+                        padding: 12px 0px
+                        line-height: 1
+                        display: block
+                        transition: .2s linear                        
+                        &:active,
+                        &:focus,
+                        &:hover
+                            text-shadow: -1px -1px 0 $hover, 1px -1px 0 $hover, -1px 1px 0 $hover, 1px 1px 0 $hover
+                            color: #ffffff
+        .bizagn--off-canvas-newsletter
+            margin-bottom: 45px
+            h4
+                margin-bottom: 22px
+            .input-group-append
+                margin-left: 0px
+            .form-control
+                background-color: #dcdcdc
+                height: 40px
+                border-radius: 0px
+                margin-bottom: 0
+                padding: 0px 20px
+            .bizagn--btn-mix 
+                padding-left: 15px
+                padding-right: 15px
+                background-color: $hover
+                &:hover
+                    background-color: $base
+        
+        .bizagn--off-canvas-social
+            margin-bottom: 40px
+            a
+                i
+                    font-size: 16px
+                    margin-right: 14px

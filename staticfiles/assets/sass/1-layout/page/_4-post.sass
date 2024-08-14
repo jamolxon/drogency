@@ -1,0 +1,458 @@
+.post-meta-info
+    z-index: 9
+    margin-bottom: 30px
+    .cats
+        margin-bottom: 10px
+        a
+            color: #505050
+            font-weight: 700
+            font-family: $mont
+            font-size: 18px
+            &:hover
+                color: #fe9494
+            &:after
+                content: ","
+                color: #505050
+            &:last-child
+                &:after
+                    display: none
+    .title
+        margin-bottom: 10px
+        h2
+            color: $base
+            font-weight: 700
+            font-size: 36px
+            line-height: 1.2
+            +mobileXs
+                font-size: 30px
+    .meta
+        margin-bottom: 20px
+        li
+            margin-right: 36px
+            position: relative
+            color: #505050
+            font-size: 14px
+            +mobileXs
+                line-height: 2.5
+            &:after
+                content: ""
+                position: absolute
+                top: 50%
+                transform: translateY(-50%)
+                left: 100%
+                height: 4px
+                width: 4px
+                background-color: #505050
+                border-radius: 50%
+                margin-left: 16px
+            &:last-child
+                margin-right: 0px
+                &:after
+                    display: none
+            a
+                color: #505050
+                font-size: 14px
+                &:hover
+                    color: #232323
+            &.meta-author
+                img
+                    border-radius: 50%
+                    height: 30px
+                    width: 30px
+                    margin-right: 6px
+    .btn
+        margin-top: 30px
+
+.post-details-cover
+    .post-thumb-cover
+        .post-thumb
+            margin-bottom: 40px
+            iframe
+                width: 100%
+                height: 500px
+                +tab
+                    height: 250px
+    .post-content-cover
+        p
+            margin-bottom: 20px
+            line-height: 1.66
+        .post-my-gallery-images
+            padding-top: 20px
+            h3
+                margin-bottom: 30px
+                font-weight: 700
+            img,
+            iframe,
+            video,
+            audio
+                margin-bottom: 30px
+        iframe
+            height: 505px
+            width: 100%
+            +medium
+                height: 250px
+        &.my-drop-cap
+            > p
+                &:first-child:first-letter
+                    font-size: 60px
+                    color: $base
+                    float: left
+                    font-family: $mont
+                    line-height: 50px
+                    font-weight: 700
+                    padding-right: 6px
+    .post-all-tags
+        margin-top: 40px
+        padding-bottom: 30px
+        a
+            display: inline-block
+            padding: 6px 10px
+            background-color: #f9f9f9
+            color: $base
+            margin-right: 2px
+            margin-bottom: 6px
+            font-size: 13px
+            &:hover 
+                background-color: $hover
+                color: $white
+    .post-about-author-box
+        display: flex
+        padding: 40px
+        background-color: #f9f9f9
+        margin: 30px 0px
+        +mobileSm
+            flex-wrap: wrap
+        .author-avatar
+            flex: 0 0 130px
+            width: 130px
+            +mobileSm
+                flex: 0 0 120px
+                max-width: 120px
+                margin: 0 auto
+                margin-bottom: 20px
+        .author-desc
+            margin-left: 30px
+            +mobileSm
+                margin-left: 0
+                h5 a,
+                .description,
+                .social-icons
+                    text-align: center
+            h5
+                a
+                    font-weight: 700
+                    font-family: $mont
+                    font-size: 17px
+                    margin-bottom: 16px
+                    display: block
+            .description
+                font-size: 14px
+                font-family: $mont
+                color: #505050
+                margin-bottom: 16px
+            .social-icons
+                a
+                    color: #505050
+                    margin-right: 5px
+                    font-size: 14px
+                    &:hover
+                        color: $hover
+    .post-all-comments
+        padding: 40px
+        margin-bottom: 30px
+        background-color: #f9f9f9
+        +mobileLg
+            padding: 20px
+        .single-comment-wrapper
+            margin-bottom: 30px
+            border-bottom: 1px solid #f3f3f3
+            &:last-child
+                margin-bottom: 0
+                border:0px
+                .single-post-comment
+                    &:last-child
+                        margin-bottom: 0
+            .single-post-comment
+                margin-bottom: 30px
+                display: flex
+                flex-wrap: wrap
+                .comment-author-image
+                    width: 120px
+                    +tab
+                        width: 40px
+                .comment-content
+                    width: calc(100% - 120px)
+                    +tab
+                        width: calc(100% - 40px)
+                        padding-left: 20px
+                    .comment-author-name
+                        margin-bottom: 8px
+                        h6
+                            font-size: 16px
+                            font-weight: 700
+                            font-family: $mont
+                            color: $base
+                            display: inline-block
+                            margin-right: 12px
+                            &:hover
+                                color: $hover
+                        span
+                            font-size: 12px
+                            font-family: $mont
+                            font-weight: 400
+                            color: #505050
+                            +mobileSm
+                                display: block
+                    p
+                        font-size: 14px
+                        line-height: 1.7
+                        +tab
+                            font-size: 13px
+                    .reply-btn
+                        margin-top: 7.5px
+                        font-size: 12px
+                        display: inline-block
+                        font-weight: 500
+                        &:hover
+                            color: $hover
+        .children
+            margin-left: 120px
+            +tab
+                margin-left: 60px
+            +mobileLg
+                margin-left: 30px
+            +mobileSm
+                margin-left: 15px
+            .single-comment-wrapper
+                padding-top: 30px
+                padding-bottom: 30px
+                border-top: 1px solid #f3f3f3
+                border-bottom: 0px
+
+    &.post-has-full-width-image
+        .post-thumb-cover
+            .post-thumb
+                margin: 0px calc(50% - 50vw) 40px calc(50% - 50vw)
+                max-width: 100vw
+                width: 100vw
+    &.post-has-video-thumb
+        .post-thumb-cover
+            .post-thumb
+                position: relative
+                margin-left: -95px
+                margin-right: -95px
+                +mobileLg
+                    margin-left: 0
+                    margin-right: 0
+                .vid-post-thumb-ol
+                    position: absolute
+                    top: 0
+                    left: 0
+                    height: 100%
+                    width: 100%
+                    z-index: 1
+                .vid-play-btn
+                    position: absolute
+                    top: 50%
+                    left: 50%
+                    transform: translate(-50%, -50%)
+                    height: 80px
+                    width: 80px
+                    line-height: 80px
+                    text-align: center
+                    color: #ffffff
+                    background-color: rgba(255, 113, 113, 0.7)
+                    font-size: 30px
+                    border-radius: 10px
+                    cursor: pointer
+                    z-index: 9
+                    +tab
+                        height: 60px
+                        width: 60px
+                        line-height: 60px
+                        font-size: 24px
+                    &:hover
+                        background-color: rgba(255, 113, 113, 1)
+            .post-meta-info
+                text-align: center
+                .meta
+                    justify-content: center
+    &.post-has-slide-thumb
+        .post-thumb-cover
+            position: relative
+            z-index: 99
+            margin-left: -95px
+            margin-right: -95px
+            +mobileLg
+                margin-left: 0px
+                margin-right: 0px
+            .post-thumb
+                position: relative
+                &:before
+                    content: ""
+                    position: absolute
+                    top: 0
+                    left: 0
+                    height: 100%
+                    width: 100%
+                    background-color: rgba(0,0,0,0.4)
+                    z-index: 1
+                .owl-nav
+                    .owl-prev,
+                    .owl-next
+                        position: absolute
+                        top: 50%
+                        transform: translateY(-50%)
+                        height: 50px
+                        width: 50px
+                        line-height: 50px
+                        text-align: center
+                        background-color: rgba(255,255,255,0.7)
+                        color: #505050
+                        font-size: 30px
+                        z-index: 9
+                        transition: .3s ease
+                        &:hover
+                            background-color: rgba(255, 113, 113, 0.7)
+                            color: $white
+                        +mobileLg
+                            height: 30px
+                            width: 30px
+                            line-height: 30px
+                            font-size: 14px
+                    .owl-prev
+                        left: 40px
+                        +mobileLg
+                            left: 10px
+                    .owl-next
+                        right: 40px
+                        +mobileLg
+                            right: 10px
+            .post-meta-info
+                position: absolute
+                top: 50%
+                left: 50%
+                transform: translate(-50%, -50%)
+                width: calc(100% - 200px)
+                height: auto
+                z-index: 2
+                text-align: center
+                +mobileLg
+                    width: calc(100% - 95px)
+                +mobileSm
+                    position: relative
+                    top: auto
+                    left: auto
+                    width: 100%
+                    transform: translate(0,0)
+                    text-align: left
+                .cats
+                    a
+                        color: $hover
+                        &:after
+                            color: #fff
+                            +mobileSm
+                                color: #505050
+                .title
+                    max-width: 600px
+                    margin: 0px auto 10px auto
+                    h2
+                        color: $white
+                        +mobileLg
+                            font-size: 21px
+                        +mobileSm
+                            color: $base
+                .meta
+                    justify-content: center
+                    +mobileSm
+                        justify-content: start
+                    .meta-author
+                        img
+                            +mobileLg
+                                height: 20px
+                                width: 20px
+                    li 
+                        color: $white
+                        +mobileLg
+                            margin-right: 20px
+                            font-size: 12px
+                        +mobileSm
+                            color: #505050
+                        &:after
+                            background-color: #fff
+                            +mobileLg
+                                margin-left: 9px
+                        a
+                            color: $white
+                            +mobileLg
+                                font-size: 12px
+                            +mobileSm
+                                color: #505050
+                                &:hover
+                                    color: $base
+
+    &.post-has-audio-thumb
+        .post-thumb-cover
+            .post-thumb
+                margin-left: -95px
+                margin-right: -95px
+                +mobileLg
+                    margin-left: 0
+                    margin-right: 0
+.post-comment-form-cover
+    padding: 30px 0px 0px 0px
+    h3
+        font-weight: 700
+        margin-bottom: 30px
+        text-transform: capitalize
+    form
+        .btn-primary
+            font-size: 22px
+            font-weight: 500
+            margin-top: 10px
+            margin-bottom: -8px
+            &:before
+                bottom: 8px
+        .form-control
+            +mobileMd
+                margin-bottom: 20px
+// Blockquote
+blockquote
+    padding: 40px
+    background-color: #f9f9f9
+    border-left: 2px solid $hover
+    position: relative
+    z-index: auto
+    &:before
+        content: "“"
+        position: absolute
+        top: -7px
+        left: 25px
+        font-size: 120px
+        color: #505050
+        font-family: $mont
+        z-index: -1
+        opacity: .1
+    p
+        line-height: 1.3
+        font-family: $mont
+        font-style: italic
+        color: $base
+        font-size: 26px
+        margin-bottom: 10px
+        z-index: 9
+    cite 
+        font-family: $mont
+        font-size: 16px
+        font-style: normal
+        color: #505050
+        
+// Blog Comment
+.comment-form
+    .form-control
+        margin-bottom: 30px
+
+// Sidebar
+.bizagn--sidebar 
+    +tab
+        margin-top: 60px

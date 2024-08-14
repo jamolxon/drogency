@@ -1,0 +1,145 @@
+*
+    list-style: none
+    outline: none !important
+
+ol,
+ul,
+p
+    margin: 0
+    padding: 0
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button 
+    -webkit-appearance: none
+    appearance: none
+    margin: 0
+
+input[type="number"]
+    -moz-appearance: textfield
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active 
+    transition: background-color 5000s ease-in-out 0s
+
+::selection 
+    text-shadow: none
+    color: #fff
+    background: #141414
+
+::placeholder
+    color: rgba(80, 80, 80, .6) !important
+    opacity: 1 !important
+
+iframe
+    max-width: 100%
+
+button:focus,
+input:focus,
+select:focus,
+textarea:focus
+    outline: none !important
+    box-shadow: none
+
+button,
+button[type="submit"],
+input[type="submit"]
+    border: none
+    background-color: transparent
+    cursor: pointer
+    -webkit-appearance: button
+    -moz-appearance: button
+    appearance: button
+
+textarea.form-control
+    resize: none
+    min-height: 155px
+    padding-top: 15px
+    padding-bottom: 15px
+
+.form-control:focus 
+    box-shadow: none
+    border-color: #999
+
+img
+    max-width: 100%
+    height: auto
+
+a 
+    color: #141414
+    +transition(0.2s, ease)
+
+a:hover,
+a:active,
+a:focus
+    color: $hover
+    text-decoration: none
+    outline: none !important
+    +transition(0.2s, ease)
+
+input,
+select,
+textarea,
+.form-control
+    text-decoration: none
+    outline: none !important
+    box-shadow: none
+    border-radius: 10px
+    border: 1px solid #dcdcdc
+    padding: 0px 30px
+    color: #141414
+    position: relative
+    height: 50px
+    font-size: 14px
+
+.form-control:focus,
+.form-control:active
+    +transition(0.3s, linear)
+
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active
+    box-shadow: none
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p 
+    margin-bottom: 0
+    padding: 0
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6
+    font-family: $vollk
+    color: #141414
+    font-weight: 700
+
+p 
+    font-family: $mont
+
+h1
+    font-size: 48px
+h2
+    font-size: 30px
+h3
+    font-size: 24px
+h4
+    font-size: 18px
+h5
+    font-size: 16px
+h6
+    font-size: 14px
+
+body
+    overflow-x: hidden !important
+    font-family: $mont
+    

@@ -1,0 +1,55 @@
+.bizagn--blog-section
+    position: relative
+    .bizagn--rm-btn
+        position: absolute
+        top: -104px
+        right: 0
+        +tab
+            right: 15px
+
+.bizagn--blog-item
+    background-color: #fff
+    box-shadow: 0px 0px 5px rgba(0,0,0,.1)
+    margin-bottom: 50px
+    &:hover
+        .bizagn--post-thumb
+            img
+                transform: scale(1.2)
+    .bizagn--post-thumb
+        overflow: hidden
+        display: block
+        img
+            transition: 1.5s ease
+
+.bizagn--blog-info
+    padding: 37px 30px 30px 30px
+    h3	
+        font-weight: 700
+        font-size: 24px
+        font-family: $mont
+        margin-bottom: 25px
+    p
+        color: #505050
+        line-height: 1.8
+    .bizagn--blog-meta
+        border-top: 1px solid rgba(94, 90, 117, 0.2)
+        padding-top: 25px
+        margin-top: 30px
+        .list-inline
+            li
+                display: inline-block
+                margin-right: 30px
+                font-size: 14px
+                color: #505050
+                a
+                    color: #505050
+                    font-size: 14px
+                    margin-right: 5px
+                    &:hover
+                        color: $hover
+                    &:after
+                        content: ","
+                        color: $base
+                    &:last-child
+                        &:after
+                            display: none

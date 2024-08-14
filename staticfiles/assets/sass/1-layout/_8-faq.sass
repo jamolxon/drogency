@@ -1,0 +1,62 @@
+.bizagn--faq-items .bizagn--faq-item
+    padding: 30px
+    background-color: #fff
+    margin-bottom: 20px
+    border-radius: 10px
+    overflow: hidden
+    &:last-child
+        margin-bottom: 30px 
+    .expand-area p
+        padding-top: 23px
+        font-size: 16px
+    .target-area
+        &.active
+            -webkit-transition: .3s
+            transition: .3s
+            h3
+                color: $hover
+                &:before
+                    content: "\f106"
+                    font-family: FontAwesome
+                    position: absolute
+                    top: 0
+                    left: 100%
+                span
+                    color: $base
+        h3
+            cursor: pointer
+            font-family: $mont
+            font-size: 18px
+            font-weight: 700
+            line-height: 1.4
+            padding-right: 20px
+            position: relative
+            &:before
+                content: "\f107"
+                font-family: FontAwesome
+                position: absolute
+                top: 0
+                left: 100%
+
+.bizagn--faq-img
+    .bizagn--faq-img-cover
+        position: absolute
+        bottom: 0
+        +tab
+            position: relative
+        img
+            margin-top: auto
+            margin-bottom: 30px
+            +tab
+                margin: 30px auto 0px auto
+
+.bizagn--brand-item
+    min-height: 52px
+    a   
+        img
+            filter: grayscale(1)
+            transition: .4s ease 
+    &:hover
+        a
+            img
+                filter: grayscale(0)
