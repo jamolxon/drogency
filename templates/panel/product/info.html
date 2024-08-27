@@ -1,0 +1,121 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+
+
+
+<!--begin::Main-->
+{% include 'parts/mobile_header.html' %}
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="d-flex flex-row flex-column-fluid page">
+        {% include 'parts/aside.html' with menu_parent="product" menu_submenu="product-list" %}
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            {% include 'parts/header.html' %}
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid"><!--begin::Entry-->
+                    <!--begin::Container-->
+                    <div class="container">
+
+                        <!--begin::Row-->
+                        <div class="row">
+                            <div class="col-xl-7">
+                                <!--begin::Base Table Widget 7-->
+                                <div class="card card-custom card-stretch gutter-b">
+                                    <!--begin::Header-->
+                                    <div class="card-header border-0 mt-5">
+                                        <h3 class="card-title align-items-start flex-column text-dark">
+                                            <span class="font-weight-bolder text-dark" style="font-size: 30px;">{{product.name}}  {{product.model|default_if_none:""}} {{product.color|default_if_none:""}}</span>
+                                            {% if product.serial_number %}<span class="text-muted mt-2 font-weight-bold font-size-sm"><h5>Серия рақами - {{product.serial_number}}</h5></span> {% endif %}
+                                            <span class="mt-4 font-weight-bold font-size-sm"><h2 style="display:inline;">Нархи - {{product_price|intcomma}} сўм</h2></span>
+                                            <span class="mt-4 font-weight-bold font-size-sm"><h2 style="display:inline;">Чегирма - {% if product.has_discount %} {{product.discount_percentage|intcomma}}% {% else %} Йўқ {% endif %} </h2></span>
+                                            {% if product.has_discount %}<span class="mt-4 font-weight-bold font-size-sm"><h2 style="display:inline;">Чегирмадаги нархи - {{discount_price|intcomma}} сўм</h2></span> {% endif %}
+                                        </h3>
+                                    </div>
+                                    <!--end::Header-->
+                                    <!--begin::Body-->
+                                <div class="card-body py-0 mt-5">
+                                        <!--begin::Table-->
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless table-vertical-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="p-0" style="width: 50px"></th>
+                                                        <th class="p-0" style="min-width: 150px"></th>
+                                                        <th class="p-0" style="min-width: 120px"></th>
+                                                        <th class="p-0" style="min-width: 70px"></th>
+                                                        <th class="p-0" style="min-width: 70px"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <h3 class="card-title align-items-start flex-column text-dark mt-7">
+                                                        <span class="font-weight-bolder text-dark"><h1 style="display:inline;">Муддатли тўлов учун</h1></span>
+                                                    </h3>
+
+                                                    {% for loan in product_loans %}
+                                                    <tr>
+                                                        <td class="pl-0">
+                                                            <div class="symbol symbol-50 symbol-fixed mr-2">
+                                                                <div class="symbol-label" style="background-color: light-blue;">{{loan.plan.month}}</div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="pl-0">
+                                                            <a href="#" class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                                <h1> {{loan.plan.name}} </h1>
+                                                            </a>
+                                                        </td>
+                                                        <td class="pr-0">
+                                                            <div class="d-flex align-items-center justify-content-end">
+                                                                <span class="mr-1">
+                                                                    <span class="svg-icon svg-icon-md svg-icon-gray-600">
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-right">
+                                                        </td>
+                                                        <td class="text-right pr-0">
+                                                            <span class="text-muted font-weight-bold d-block">Нархи</span>
+                                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                                <h1> {{loan.price|intcomma}} сўм</h1>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                    {% endfor %}
+                                                </tbody>
+                                                
+                                            </table>
+                                            <br>
+                                        </div>
+                                        <!--end::Table-->
+                                    </div>
+                                    <!--end::Body-->
+                                </div>
+                                <!--end::Base Table Widget 7-->
+                            </div>
+
+                        </div>
+                        <!--end::Row-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            {% include 'parts/footer.html' %}
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Main-->
+{% include 'parts/user_panel.html' %}
+
+{% include 'parts/scroll_top.html' %}
+
+{% endblock %}
+

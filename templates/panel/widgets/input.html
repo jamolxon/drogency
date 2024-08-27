@@ -1,0 +1,13 @@
+<div class="col-9 col-form-label">
+   <div class="checkbox-inline">
+        <label class="checkbox checkbox-outline checkbox-success">
+        <input type="checkbox" name="{{widget.name}}"
+        {% if object.date_of_birth %}
+         value="{{object.date_of_birth}}"
+        {% endif %}
+        id="{{widget.id}}" {% include "django/forms/widgets/attrs.html" %}/>
+        <span></span>{{widget.attrs.name|capfirst}}
+        </label>
+  </div>
+     <span class="form-text text-muted">{{widget.attrs.description}}</span>
+</div>

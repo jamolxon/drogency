@@ -1,0 +1,21 @@
+<textarea name="{{widget.name}}" id="{{widget.attrs.id}}" hidden>
+        {% if widget.value %}
+         {{widget.value}}
+        {% endif %}
+ </textarea>
+
+<script src="https://cdn.ckeditor.com/ckeditor5/29.0.0/classic/ckeditor.js"></script>
+
+<script>
+			ClassicEditor
+					.create(document.querySelector( '#{{widget.attrs.id}}' ), {
+					ckfinder: {
+					uploadUrl: '{{host}}/ckeditor/upload/'
+					},
+					},
+					).then( editor => {
+							console.log( 'editor' );
+					} ).catch( error => {
+							console.error( 'error' );
+					} );
+</script>

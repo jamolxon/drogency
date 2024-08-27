@@ -1,0 +1,511 @@
+{% extends 'site/base.html' %}
+{% load static %}
+{% block content %}
+<!-- Banner Slider -->
+<section class="bizagn--bnner-cover" data-bg-img="/static/assets/images/banner/banner-bg.png">
+    <div class="container">
+        <div class="bizagn--banner bizagn--owl-btn owl-carousel style-2" data-owl-nav="true" data-owl-dots="true" data-owl-animate-out="fadeOut" data-owl-animate-in="fadeIn" data-owl-margin="5">
+
+            {% for slider in sliders %} 
+            <!-- slide 01 -->
+            <div class="bizagn--banner-slide">
+                <div class="row">
+                    <div class="col-md-6">
+                        <!-- Slide Text -->
+                        <div class="bizagn--banner-slide-text">
+                            <h1>{{slider.title}}</h1>
+                            <p>{{slider.description}}</p>
+                            <a href="#" class="btn bizagn--base-btn">
+                                <img src="/static/assets/images/btn-right-arrow.svg" alt="" class="svg left"> About Us
+                                <img src="/static/assets/images/btn-right-arrow.svg" alt="" class="svg right">
+                            </a>
+                        </div>
+                        <!-- End of Slide Text -->
+                    </div>
+                    <div class="col-md-6">
+                        <!-- Slide Images -->
+                        <div class="bizagn--banner-slide-images d-flex justify-content-md-end">
+                            <div class="main-image">
+                                <img src="{{slider.image.url}}" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                        <!-- End of Slide Images -->
+                    </div>
+                </div>
+            </div>
+            <!-- End of slide 01 -->
+
+            {% endfor %}
+
+        </div>
+    </div>
+</section>
+<!-- End of Banner Slider -->
+
+<!-- Service -->
+<section class="pt-120 pb-120">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="bizagn--section-title">
+            <p>Service</p>
+            <h2>See Our Incrediable <br> Qualityfull Service</h2>
+        </div>
+        <!-- End of Section Title -->
+        <div class="bizagn--service-slider bizagn--owl-btn owl-carousel bizagn--nav-95px" data-owl-items="3" data-owl-nav="true" data-owl-margin="30" data-owl-autoplay="false" data-owl-responsive='{"0": {"items": "1"},"768": {"items": "2"}, "992": {"items": "3"}}'>
+            <!-- Service Item -->
+            <div class="bizagn--service-slider-item">
+                <div class="bizagn--service-item">
+                    <img src="/static/assets/images/service/1.svg" alt="" class="img-fluid svg">
+                    <h3>SEO Optimization</h3>
+                    <p>Meenemen lot centimes gezegend rug gebracht selangor. Eerst ieder hen tot nachten nu hiertoe ze op.</p>
+                </div>
+            </div>
+            <!-- End of Service Item -->
+
+            <!-- Service Item -->
+            <div class="bizagn--service-slider-item">
+                <div class="bizagn--service-item">
+                    <img src="/static/assets/images/service/2.svg" alt="" class="img-fluid svg">
+                    <h3>Digital Marketing</h3>
+                    <p>Meenemen lot centimes gezegend rug gebracht selangor. Eerst ieder hen tot nachten nu hiertoe ze op.</p>
+                </div>
+            </div>
+            <!-- End of Service Item -->
+
+            <!-- Service Item -->
+            <div class="bizagn--service-slider-item">
+                <div class="bizagn--service-item">
+                    <img src="/static/assets/images/service/3.svg" alt="" class="img-fluid svg">
+                    <h3>Product Design</h3>
+                    <p>Meenemen lot centimes gezegend rug gebracht selangor. Eerst ieder hen tot nachten nu hiertoe ze op.</p>
+                </div>
+            </div>
+            <!-- End of Service Item -->
+
+            <!-- Service Item -->
+            <div class="bizagn--service-slider-item">
+                <div class="bizagn--service-item">
+                    <img src="/static/assets/images/service/4.svg" alt="" class="img-fluid svg">
+                    <h3>Photography</h3>
+                    <p>Meenemen lot centimes gezegend rug gebracht selangor. Eerst ieder hen tot nachten nu hiertoe ze op.</p>
+                </div>
+            </div>
+            <!-- End of Service Item -->
+
+            <!-- Service Item -->
+            <div class="bizagn--service-slider-item">
+                <div class="bizagn--service-item">
+                    <img src="/static/assets/images/service/5.svg" alt="" class="img-fluid svg">
+                    <h3>Graphics Design</h3>
+                    <p>Meenemen lot centimes gezegend rug gebracht selangor. Eerst ieder hen tot nachten nu hiertoe ze op.</p>
+                </div>
+            </div>
+            <!-- End of Service Item -->
+
+            <!-- Service Item -->
+            <div class="bizagn--service-slider-item">
+                <div class="bizagn--service-item">
+                    <img src="/static/assets/images/service/6.svg" alt="" class="img-fluid svg">
+                    <h3>Web Development</h3>
+                    <p>Meenemen lot centimes gezegend rug gebracht selangor. Eerst ieder hen tot nachten nu hiertoe ze op.</p>
+                </div>
+            </div>
+            <!-- End of Service Item -->
+        </div>
+    </div>
+</section>
+<!-- End of Service -->
+
+<!-- Project -->
+<section class="pt-120 pb-120" data-bg-img="assets/images/project/bg.png">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="bizagn--section-title">
+            <p>projects</p>
+            <h2>Take a peek at our <br> latest projects</h2>
+        </div>
+        <!-- End of Section Title -->
+
+        <!-- Project Filter -->
+        <div class="bizagn--project-filter">
+            <!-- Project Filter Buttons -->
+            <div class="bizagn--project-filter-buttons">
+                <button class="filter-btn" data-filter="*"> All </button>
+                {% for category in project_categories %}
+                <button class="filter-btn" data-filter=".{{category.title}}"> {{category.title}} </button>
+                {% endfor %}
+            </div>
+            <!-- End of Project Filter Buttons -->
+
+
+            <div class="row no-gutters bizagn--project-filter-items isotope">
+                <!-- Filter Item -->
+                {% for project in projects %}
+                <div class="col-lg-4 col-md-6 bizagn--filter-item {% for category in project.categories.all%} {{category.title}} {% endfor %}">
+                    <div class="d-flex justify-content-center">
+                        <div class="d-inline-block position-relative">
+                            <img src="{{project.image_small.url}}" alt="" class="img-fluid">
+                            <div class="bizagn--filter-item-data">
+                                <h4> <a href="{% url 'common:project-detail' project.slug %}"> {{project.title}} </a> </h4>
+                                {% for category in project.categories.all %}
+                                <p style="display:inline;">{{category.title}}</p>
+                                {% endfor %}
+                                <a href="{% url 'common:project-detail' project.slug %}"><img src="/static/assets/images/project/arrow.svg" alt="" class="img-fluid"></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End of Filter Item -->
+                {% endfor %}
+            </div>
+        </div>
+        <!-- End of Project Filter -->
+
+    </div>
+</section>
+<!-- End of Project -->
+
+<!-- Testimonial -->
+<section class="pt-120 pb-120">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="bizagn--section-title text-center">
+            <p>Testimonials</p>
+            <h2>What Say About Our  Agency</h2>
+        </div>
+        <!-- End of Section Title -->
+
+        <div class="row">
+            <div class="col-md-8 offset-md-2">
+                <!-- Testimonial Slider -->
+                <div class="bizagn--testi-slider bizagn--owl-btn owl-carousel bizagn--nav-95px" data-owl-nav="true" data-owl-autoplay="false" data-bg-img="assets/images/testimonial/map-bg.png">
+                    <!-- Testimonial Slider Item -->
+                    <div class="bizagn--testi-slider-item">
+                        <div class="bizagn--testi-item text-center">
+                            <img src="/static/assets/images/testimonial/client-c1.png" alt="" class="img-fluid">
+                            <p>Bovendien wassching de ad bestreken na. Men bronnen mochten are tinmijn vroeger honderd bersawa. Weg geschikt der eilandje elastica stelling prestige. prestige gas vroegere Ader gold hier dal sap nam toe.</p>
+                            <div class="client-pos"> <span>Jenny Mandas / </span> Founder</div>
+                        </div>
+                    </div>
+                    <!-- End of Testimonial Slider Item -->
+
+                    <!-- Testimonial Slider Item -->
+                    <div class="bizagn--testi-slider-item">
+                        <div class="bizagn--testi-item text-center">
+                            <img src="assets/images/testimonial/client-2.png" alt="" class="img-fluid">
+                            <p>Bovendien wassching de ad bestreken na. Men bronnen mochten are tinmijn vroeger honderd bersawa. Weg geschikt der eilandje elastica stelling prestige. prestige gas vroegere Ader gold hier dal sap nam toe.</p>
+                            <div class="client-pos"> <span>Nanni Morle / </span> CEO</div>
+                        </div>
+                    </div>
+                    <!-- End of Testimonial Slider Item -->
+
+                    <!-- Testimonial Slider Item -->
+                    <div class="bizagn--testi-slider-item">
+                        <div class="bizagn--testi-item text-center">
+                            <img src="assets/images/testimonial/client-3.png" alt="" class="img-fluid">
+                            <p>Bovendien wassching de ad bestreken na. Men bronnen mochten are tinmijn vroeger honderd bersawa. Weg geschikt der eilandje elastica stelling prestige. prestige gas vroegere Ader gold hier dal sap nam toe.</p>
+                            <div class="client-pos"> <span>Marzia Paul / </span> Marketer</div>
+                        </div>
+                    </div>
+                    <!-- End of Testimonial Slider Item -->
+                </div>
+                <!-- End of Testimonial Slider -->
+            </div>
+        </div>
+
+
+    </div>
+</section>
+<!-- End of Testimonial -->
+
+<!-- Call To Action -->
+<section class="pt-120 pb-120 bg-red" data-bg-img="assets/images/cta-bg.png">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-7 col-md-8 offset-lg-1">
+                <h2>Do You Have Any Project?</h2>
+                <p>Taiping bontste laatste zit met bronnen ver. Tot wellesley aan gedurende zij</p>
+            </div>
+            <div class="col-lg-3 col-md-4 offset-lg-1">
+                <a href="#" class="btn bizagn--base-btn white-btn">
+                    <img src="assets/images/btn-right-arrow.svg" alt="" class="svg left">
+                        Hire us
+                    <img src="assets/images/btn-right-arrow.svg" alt="" class="svg right">
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of Call To Action -->
+
+<!-- Team -->
+<section class="pt-120 pb-120">
+    <div class="container">
+        <div class="bizagn--section-title text-center">
+            <p>Team</p>
+            <h2>Meet Our Team Member</h2>
+        </div>
+
+        <div class="bizagn--team-slider bizagn--owl-btn owl-carousel bizagn--nav-95px" data-owl-items="4" data-owl-autoplay="false" data-owl-nav="true" data-owl-margin="30" data-owl-responsive='{"0": {"items": "1"}, "480": {"items": "2"}, "768": {"items": "3"}, "992": {"items": "4"}}'>
+            <!-- Team Item -->
+            <div class="bizagn--team-slider-item">
+                <div class="bizagn--team-item text-center">
+                    <img src="assets/images/team/0-1.jpg" alt="" class="img-fluid">
+                    <div class="bizagn--team-item-info">
+                        <h3>Andrea Anderson</h3>
+                        <p>Graphics Designer</p>
+                        <div class="bizagn--social-links">
+                            <a href="#"><i class="fa fa-pinterest-square"></i></a>
+                            <a href="#"><i class="fa fa-facebook-official"></i></a>
+                            <a href="#"><i class="fa fa-behance-square"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Team Item -->
+
+            <!-- Team Item -->
+            <div class="bizagn--team-slider-item">
+                <div class="bizagn--team-item text-center">
+                    <img src="assets/images/team/0-2.jpg" alt="" class="img-fluid">
+                    <div class="bizagn--team-item-info">
+                        <h3>Kyle Gray</h3>
+                        <p>Web Designer</p>
+                        <div class="bizagn--social-links">
+                            <a href="#"><i class="fa fa-pinterest-square"></i></a>
+                            <a href="#"><i class="fa fa-facebook-official"></i></a>
+                            <a href="#"><i class="fa fa-behance-square"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Team Item -->
+
+            <!-- Team Item -->
+            <div class="bizagn--team-slider-item">
+                <div class="bizagn--team-item text-center">
+                    <img src="assets/images/team/0-3.jpg" alt="" class="img-fluid">
+                    <div class="bizagn--team-item-info">
+                        <h3>Mike Taylor</h3>
+                        <p>UI Designer</p>
+                        <div class="bizagn--social-links">
+                            <a href="#"><i class="fa fa-pinterest-square"></i></a>
+                            <a href="#"><i class="fa fa-facebook-official"></i></a>
+                            <a href="#"><i class="fa fa-behance-square"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Team Item -->
+
+            <!-- Team Item -->
+            <div class="bizagn--team-slider-item">
+                <div class="bizagn--team-item text-center">
+                    <img src="assets/images/team/0-4.jpg" alt="" class="img-fluid">
+                    <div class="bizagn--team-item-info">
+                        <h3>Aline Cardin</h3>
+                        <p>App Designer</p>
+                        <div class="bizagn--social-links">
+                            <a href="#"><i class="fa fa-pinterest-square"></i></a>
+                            <a href="#"><i class="fa fa-facebook-official"></i></a>
+                            <a href="#"><i class="fa fa-behance-square"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Team Item -->
+
+            <!-- Team Item -->
+            <div class="bizagn--team-slider-item">
+                <div class="bizagn--team-item text-center">
+                    <img src="assets/images/team/0-5.jpg" alt="" class="img-fluid">
+                    <div class="bizagn--team-item-info">
+                        <h3>Andre Russel</h3>
+                        <p>Software Designer</p>
+                        <div class="bizagn--social-links">
+                            <a href="#"><i class="fa fa-pinterest-square"></i></a>
+                            <a href="#"><i class="fa fa-facebook-official"></i></a>
+                            <a href="#"><i class="fa fa-behance-square"></i></a>
+                            <a href="#"><i class="fa fa-dribbble"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Team Item -->
+        </div>
+    </div>
+</section>
+<!-- End of Team -->
+
+<!-- FAQ -->
+<section class="pt-120 pb-90 bg-f8">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6">
+                <!-- Section Title -->
+                <div class="bizagn--section-title">
+                    <p>FAQ</p>
+                    <h2>Always Support <br> Our Customer</h2>
+                </div>
+                <!-- End of Section Title -->
+
+                <!-- FAQ Items -->
+                <div class="bizagn--faq-items accordion" id="bizagn--accordion">
+                    <!-- FAQ Item 01 -->
+                    <div class="bizagn--faq-item">
+                        <div class="target-area active" id="target-area">
+                            <h3 data-toggle="collapse" data-target="#expand-area-1" aria-expanded="true" aria-controls="expand-area-1">
+                                <span>Q.</span> What is Creative Agency?
+                            </h3>
+                        </div>
+                        <div id="expand-area-1" class="collapse expand-area show" aria-labelledby="target-area" data-parent="#bizagn--accordion">
+                            <p>Procede gronden in bereikt de te verdere. Zeven steel is ugong op. Ingericht brandstof er te degelijke herhaling. Jungles af planten ontdekt op.</p>
+                        </div>
+                    </div>
+                    <!-- End of FAQ Item 01 -->
+
+                    <!-- FAQ Item 02 -->
+                    <div class="bizagn--faq-item">
+                        <div class="target-area">
+                            <h3 class="collapsed" data-toggle="collapse" data-target="#expand-area-2" aria-expanded="false" aria-controls="expand-area-2">
+                                <span>Q.</span> Do you have any idea?
+                            </h3>
+                        </div>
+                        <div id="expand-area-2" class="collapse expand-area" aria-labelledby="target-area" data-parent="#bizagn--accordion">
+                            <p>Procede gronden in bereikt de te verdere. Zeven steel is ugong op. Ingericht brandstof er te degelijke herhaling. Jungles af planten ontdekt op.</p>
+                        </div>
+                    </div>
+                    <!-- End of FAQ Item 02 -->
+
+                    <!-- FAQ Item 03 -->
+                    <div class="bizagn--faq-item">
+                        <div class="target-area">
+                            <h3 class="collapsed" data-toggle="collapse" data-target="#expand-area-3" aria-expanded="false" aria-controls="expand-area-3">
+                                <span>Q.</span> What is the Agency policy?
+                            </h3>
+                        </div>
+                        <div id="expand-area-3" class="collapse expand-area" aria-labelledby="target-area" data-parent="#bizagn--accordion">
+                            <p>Procede gronden in bereikt de te verdere. Zeven steel is ugong op. Ingericht brandstof er te degelijke herhaling. Jungles af planten ontdekt op.</p>
+                        </div>
+                    </div>
+                    <!-- End of FAQ Item 03 -->
+
+                    <!-- FAQ Item 03 -->
+                    <div class="bizagn--faq-item">
+                        <div class="target-area">
+                            <h3 class="collapsed" data-toggle="collapse" data-target="#expand-area-4" aria-expanded="false" aria-controls="expand-area-4">
+                                <span>Q.</span> Can’t find what you’re looking for?
+                            </h3>
+                        </div>
+                        <div id="expand-area-4" class="collapse expand-area" aria-labelledby="target-area" data-parent="#bizagn--accordion">
+                            <p>Procede gronden in bereikt de te verdere. Zeven steel is ugong op. Ingericht brandstof er te degelijke herhaling. Jungles af planten ontdekt op.</p>
+                        </div>
+                    </div>
+                    <!-- End of FAQ Item 03 -->
+                </div>
+                <!-- End of FAQ Items -->
+            </div>
+            <div class="col-lg-5 offset-lg-1 d-flex align-items-bottom justify-content-center bizagn--faq-img">
+                <div class="bizagn--faq-img-cover">
+                    <img src="assets/images/faq-illus.png" alt="" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End of FAQ -->
+
+<!-- Brands -->
+<div class="pt-120 pb-120">
+    <div class="container">
+        <!-- Brand Items -->
+        <div class="bizagn--brand-slider bizagn--owl-btn owl-carousel" data-owl-items="6" data-owl-mouse-drag="true" data-owl-responsive='{"0": {"items": "2"}, "480": {"items": "3"}, "768": {"items": "4"}, "992": {"items": "6"}}'>
+            <!-- Brand Item -->
+            <div class="bizagn--brand-item d-flex justify-content-center">
+                <a href="#"><img src="assets/images/brands/1.png" alt="" class="img-fluid"></a>
+            </div>
+            <!-- End of Brand Item -->
+
+            <!-- Brand Item -->
+            <div class="bizagn--brand-item d-flex justify-content-center">
+                <a href="#"><img src="assets/images/brands/2.png" alt="" class="img-fluid"></a>
+            </div>
+            <!-- End of Brand Item -->
+
+            <!-- Brand Item -->
+            <div class="bizagn--brand-item d-flex justify-content-center">
+                <a href="#"><img src="assets/images/brands/3.png" alt="" class="img-fluid"></a>
+            </div>
+            <!-- End of Brand Item -->
+
+            <!-- Brand Item -->
+            <div class="bizagn--brand-item d-flex justify-content-center">
+                <a href="#"><img src="assets/images/brands/4.png" alt="" class="img-fluid"></a>
+            </div>
+            <!-- End of Brand Item -->
+
+            <!-- Brand Item -->
+            <div class="bizagn--brand-item d-flex justify-content-center">
+                <a href="#"><img src="assets/images/brands/5.png" alt="" class="img-fluid"></a>
+            </div>
+            <!-- End of Brand Item -->
+
+            <!-- Brand Item -->
+            <div class="bizagn--brand-item d-flex justify-content-center">
+                <a href="#"><img src="assets/images/brands/6.png" alt="" class="img-fluid"></a>
+            </div>
+            <!-- End of Brand Item -->
+        </div>
+        <!-- End of Brand Items -->
+    </div>
+</div>
+<!-- End of Brands -->
+
+<!-- Blogs -->
+<section class="pt-120 pb-70" data-bg-img="assets/images/blogs/bg.png">
+    <div class="container">
+        <!-- Section Title -->
+        <div class="bizagn--section-title">
+            <p>Blog</p>
+            <h2>See Our Creative <br> Blog</h2>
+        </div>
+        <!-- End of Section Title -->
+
+        <div class="row bizagn--blog-section">
+            <!-- Blog Item -->
+            {% for blog in blogs %}
+            <div class="col-md-6">
+                <div class="bizagn--blog-item">
+                    <a href="{% url 'common:blog-detail' blog.slug %}" class="bizagn--post-thumb">
+                        <img src="{{blog.main_image.url}}" alt="" class="img-fluid">
+                    </a>
+                    <div class="bizagn--blog-info">
+                        <h3><a href="{% url 'common:blog-detail' blog.slug %}">{{blog.title}}</a></h3>
+                        <p>{{blog.description}}</p>
+                        <div class="bizagn--blog-meta">
+                            <ul class="list-inline">
+                                <li>By <a href="{% url 'common:blog-detail' blog.slug %}">{{blog.author}}</a></li>
+                                <li><a href="{% url 'common:blog-detail' blog.slug %}">{{blog.published_date}}</a></li>
+                                <li><a href="{% url 'common:blog-detail' blog.slug %}">{% for category in blog.categories.all%} {{category.title}} {% endfor %}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+            <!-- End of Blog Item -->
+
+            <!-- Read More Button -->
+            <a href="{% url 'common:blog-list' %}" class="bizagn--rm-btn">All Blog <i class="fa fa-angle-right"></i></a>
+            <!-- End of Read More Button -->
+        </div>
+    </div>
+</section>
+<!-- End of Blogs -->
+
+    {% endblock %}

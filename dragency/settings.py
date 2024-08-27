@@ -46,6 +46,8 @@ INSTALLED_APPS = [
         'debug_toolbar',
 
         'common',
+        'panel',
+        'helpers'
         ]
 
 MIDDLEWARE = [
@@ -84,17 +86,6 @@ TEMPLATES = [
         ]
 
 WSGI_APPLICATION = 'dragency.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/5.0/ref/settings/#databases
-
-DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': BASE_DIR / 'db.sqlite3',
-            }
-        }
 
 
 # Password validation
@@ -221,3 +212,9 @@ DJANGORESIZED_DEFAULT_KEEP_META = True
 DJANGORESIZED_DEFAULT_FORCE_FORMAT = 'JPEG'
 DJANGORESIZED_DEFAULT_FORMAT_EXTENSIONS = {'JPEG': ".jpg"}
 DJANGORESIZED_DEFAULT_NORMALIZE_ROTATION = True
+
+
+try:
+    from .local_settings import *  # noqa
+except ImportError:
+    pass

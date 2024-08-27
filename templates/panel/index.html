@@ -1,0 +1,45 @@
+{% extends 'panel/base.html' %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+		<!--begin::Main-->
+		{% include 'panel/parts/mobile_header.html' %}
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Page-->
+			<div class="d-flex flex-row flex-column-fluid page">
+				{% include 'panel/parts/aside.html' %}
+				<!--begin::Wrapper-->
+				<div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+					{% include 'panel/parts/header.html' %}
+					<!--begin::Content-->
+					<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+
+						<!--begin::Entry-->
+						<div class="d-flex flex-column-fluid">
+							<!--begin::Container-->
+							<div class="container">
+                                <div class="row">
+							
+                                </div>
+								<!--end::Row-->
+
+							</div>
+							<!--end::Container-->
+						</div>
+						<!--end::Entry-->
+					</div>
+					<!--end::Content-->
+					{% include 'panel/parts/footer.html' %}
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Page-->
+		</div>
+		<!--end::Main-->
+		{% include 'panel/parts/user_panel.html' %}
+
+		{% include 'panel/parts/scroll_top.html' %}
+
+
+{% endblock %}

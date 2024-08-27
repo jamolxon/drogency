@@ -1,0 +1,10 @@
+<div class="col-lg-4 col-md-9 col-sm-12">
+    <div class="input-group date" id="{{widget.attrs.id}}" data-date-format="YYYY-MM-DD" data-target-input="nearest">
+        <input type="text" value="{{widget.value}}" class="form-control datetimepicker-input picker" name="{{widget.name}}" {% include "django/forms/widgets/attrs.html" %} placeholder="{{widget.attrs.placeholder}}"/>
+        <div class="input-group-append" data-target="#{{widget.attrs.id}}" data-toggle="datetimepicker">
+            <span class="input-group-text">
+                <i class="ki ki-calendar"></i>
+            </span>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,294 @@
+// Buttons
+.btn-style-right
+    font-size: 16px !important
+    font-weight: 700 !important
+    font-family: $mont !important
+    color: #505050 !important
+    position: relative
+    &:hover
+        &:before
+            opacity: 1
+            background-color: $hover
+            width: 100%
+    &:before
+        content: ""
+        position: absolute
+        bottom: 0px
+        height: 1px 
+        width: 0px
+        background-color: #222
+        opacity: 0
+        transition: .4s ease
+        left: 0
+    i
+        font-weight: 700
+        margin-left: 14px
+
+.btn-style-left
+    font-size: 16px !important
+    font-weight: 700 !important
+    font-family: $mont !important
+    color: #505050 !important
+    position: relative
+    &:hover
+        &:before
+            opacity: 1
+            background-color: $hover
+            width: 100%
+    &:before
+        content: ""
+        position: absolute
+        bottom: 0px
+        height: 1px 
+        width: 0px
+        background-color: #222
+        opacity: 0
+        transition: .4s ease
+        right: 0
+    i
+        font-weight: 700
+        margin-right: 14px
+
+.bizagn--btn-mix
+    background-color: $hover
+    color: #fff
+    border-radius: 0px
+    transition: .4s ease-in-out
+    padding-left: 30px
+    padding-right: 30px
+    font-size: 14px
+    border: 0px
+    &:hover
+        color: #fff
+        background-color: $base
+
+.bizagn--base-btn
+    background-color: $hover !important
+    padding: 20px 40px
+    padding-left: 73px
+    color: #ffffff
+    line-height: 1
+    border: 0px
+    border-radius: 10px
+    font-size: 14px
+    z-index: 9
+    position: relative
+    transition: .4s ease
+    z-index: 0
+    overflow: hidden
+    &.white-btn
+        background-color: #fff !important
+        color: #EF3F22
+        .svg path
+            fill: $hover
+        +mobileLg
+            margin-top: 25px
+        &:hover
+            color: #EF3F22
+        &:before
+            display: none
+        .svg
+            path
+                fill: #EF3F22
+    &:focus,
+    &:active
+        color: #ffffff
+        padding-left: 40px
+        padding-right: 73px
+    &:hover,
+    &:focus
+        color: #ffffff
+        padding-left: 40px
+        padding-right: 73px
+        &:before
+            height: 100%
+            width: 100%
+            opacity: 0
+            transition: .4s ease
+        .svg
+            &.left
+               left: -63px
+            &.right
+                right: 40px
+                animation: 1.4s lrmove linear infinite
+
+    &:before
+        content: ""
+        position: absolute
+        top: 50%
+        left: 50%
+        transform: translate(-50%, -50%)
+        height: 0
+        width: 0
+        background-color: $base
+        border-radius: 10px
+        z-index: -1
+    .svg
+        width: 23px
+        height: 13px
+        margin-top: -4px
+        position: absolute
+        top: 50%
+        transform: translateY(-25%)
+        transition: .4s
+        path
+            fill: #ffffff
+            transition: .4s
+        &.left
+            left: 40px
+        &.right
+            right: -63px
+
+.bizagn--owl-btn
+    .owl-item
+        img
+            width: auto
+            max-width: 100%
+    .owl-nav
+        .owl-next
+            @extend .btn-style-right
+        .owl-prev
+            @extend .btn-style-left
+
+// Titles
+.bizagn--section-title
+    margin-top: -8px
+    margin-bottom: 73px
+    p
+        color: $hover
+        font-family: $mont  
+        font-weight: 700
+        margin-bottom: 13px
+        font-size: 20px
+    h2
+        font-size: 56px
+        color: #141414
+        +tab
+            font-size: 36px
+
+.bizagn--page-title
+    padding-top: 255px
+    padding-bottom: 255px
+    background-color: #FFF7F7
+    text-align: center
+    position: relative
+    h2
+        font-size: 60px
+        color: #141414
+        line-height: 1.1
+    p
+        max-width: 540px
+        margin: 0 auto
+        color: #505050
+        line-height: 1.8
+    .bizagn--page-bc
+        position: absolute
+        bottom: 60px
+        left: 0
+        transform: translateY(-50%)
+        width: 100%
+        ul li
+            margin-right: 7px
+            margin-left: -4px
+            display: inline-block
+            &:last-child
+                color: #e53a1c
+            &:after
+                content: "\f105"
+                font-family: FontAwesome
+                margin-left: 7px
+            &:last-child:after
+                display: none
+
+// Navs
+.bizagn--nav-95px
+    position: relative
+    +xLarge
+        margin-bottom: 43px !important
+    .owl-nav
+        .owl-prev,
+        .owl-next
+            position: absolute
+            top: 50%
+            transform: translateY(-50%)
+            +xLarge
+                top: 100%
+                margin-top: 25px
+        .owl-prev
+            left: -159px
+            +xLarge
+                left: 50%
+                transform: translate(-100%, 0%)
+                margin-left: -15px
+        .owl-next
+            right: -159px
+            +xLarge
+                right: 50%
+                transform: translate(100%, 0%)
+                margin-right: -15px
+
+section.bg-img
+    background-repeat: no-repeat
+    background-size: 100% 100%
+    background-position: center center
+    +tab
+        background-size: cover
+
+.bizagn--rm-btn
+    @extend .btn-style-right
+
+.bg-f8
+    background-color: #f8f8f8
+
+.bizagn--bg-color-1
+    background-color: #f8f8f8
+
+// Paginaiton
+.bizagn--pagination
+    margin-top: 10px
+    line-height: 0.75
+    text-align: center
+    span,
+    a
+        margin-right: 24px
+        &:hover
+            color: $hover
+
+.bizagn--item-gap-30 
+    > *
+        margin-bottom: 30px
+@keyframes lrmove
+    0%
+        margin-right: 0px
+    25%
+        margin-right: -4.5px
+    50%
+        margin-right: -9px
+    75%
+        margin-right: -4.5px
+    100%
+        margin-right: 0px
+
+// Back To Top Button
+.back-to-top 
+  height: 40px
+  width: 40px
+  border-radius: 50%
+  position: fixed
+  bottom: 0px
+  right: 40px
+  background-color: #232323
+  color: #ffffff
+  cursor: pointer
+  visibility: hidden
+  opacity: 0
+  z-index: -99
+  -webkit-transition: 0.5s ease-in-out
+  transition: 0.5s ease-in-out
+.back-to-top.show 
+  z-index: 99
+  opacity: 1
+  visibility: visible
+  bottom: 40px
+.back-to-top:hover 
+  background-color: $hover

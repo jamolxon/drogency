@@ -1,0 +1,82 @@
+// Color
+=colors($color, $class)
+    .#{$class}
+        color: $color 
+    .#{$class}-bg 
+        background-color: $color 
+    .#{$class}-bo 
+        border-color: $color !important
+
+// Gradient Generator
+=vertical-gradient($from, $to) 
+    background: $from
+    background: -moz-linear-gradient(top, $from 0%, $to 100%)
+    background: -webkit-linear-gradient(top, $from 0%,$to 100%)
+    background: linear-gradient(to bottom, $from 0%,$to 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$from}', endColorstr='#{$to}',GradientType=0)
+
+=horizontal-gradient($from, $to) 
+    background: $from
+    background: -moz-linear-gradient(left, $from 0%, $to 100%)
+    background: -webkit-linear-gradient(left, $from 0%,$to 100%)
+    background: linear-gradient(to right, $from 0%,$to 100%)
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$from}', endColorstr='#{$to}',GradientType=1)
+
+// Transition
+=transition($value, $transition-name)  
+    -webkit-transition: $value $transition-name 
+    transition: $value $transition-name 
+// Animation
+
+=animation($animation-name,$animation-duration,$timing-function,$delay,$animation-iteration)
+    animation: $animation-name $animation-duration $timing-function $delay $animation-iteration
+
+// FontAwesome Icon 
+=fa($icon)
+    font-family: 'FontAwesome'
+    content: $icon
+
+// Media Queries
+// XX. Extra Small Devices (less than 380px)
+=mobileXs()  
+    @media only screen and (max-width: 320px)  
+        @content 
+
+// XX. Small Devices (less than 480px)
+=mobileSm()  
+    @media only screen and (max-width: 479px)  
+        @content 
+
+// XX. Medium Devices (less than 576px)
+=mobileMd()  
+    @media only screen and (max-width: 575px)  
+        @content 
+    
+// XX. Medium Devices (less than 768px)
+=mobileLg()  
+    @media only screen and (max-width: 767px)  
+        @content 
+     
+// XX. Medium Devices (less than 991px)
+=tab()  
+    @media only screen and (max-width:991px)  
+        @content 
+     
+// XX. Large Devices (less than 1200px)
+=medium()  
+    @media only screen and (max-width: 1199px)  
+        @content 
+     
+// XX. Extra Large Devices (More than 1200px)
+=large()  
+    @media only screen and (min-width: 1200px) 
+        @content 
+
+=xLarge()  
+    @media only screen and (max-width: 1450px) 
+        @content 
+
+// XX. Custom Devices
+=customMq($min-width, $max-width)
+    @media only screen and (min-width: $min-width) and (max-width: $max-width)  
+        @content 

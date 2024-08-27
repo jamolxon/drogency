@@ -1,0 +1,219 @@
+{% extends 'site/base.html' %}
+{% load static %}
+{% block content%}
+
+    <!-- Page Title -->
+    <div class="bizagn--page-title">
+        <h2>Blog Details</h2>
+    <p>{{object.description}}</p>
+        <div class="bizagn--page-bc">
+            <ul>
+            <li><a href="{% url 'common:home' %}">Home</a></li>
+                <li>Blog Details</li>
+            </ul>
+        </div>
+    </div>
+    <!-- End of Page Title -->
+
+    <!-- Blogs -->
+    <section class="pt-120 pb-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-9">
+                    <!-- Blog Details -->
+                    <div class="post-details-cover">
+                        <!-- Post Thumbnail -->
+                        <div class="post-thumb-cover">
+                            <div class="post-thumb">
+                            <img src="{{object.large_image.url}}" alt="" class="img-fluid" data-rjs="2">
+                            </div>
+                            <!-- Post Meta Info -->
+                            <div class="post-meta-info">
+                                <!-- Category -->
+                                <p class="cats">
+                                {% for category in object.categories.all %}
+                                <a href="{% url 'common:blog-detail' object.slug %}">{{category.title}}</a>
+                                {% endfor %}
+                                </p>
+                                <!-- Title -->
+                                <div class="title">
+                                <h2>{{object.title}}</h2>
+                                </div>
+                                <!-- Meta -->
+                                <ul class="nav meta align-items-center">
+                                    <li class="meta-author">
+                                        <img src="/static/assets/images/blogs/author.jpg" alt="" class="img-fluid" data-rjs="2">
+                                    <a href="{% url 'common:blog-detail' object.slug %}">{{object.author}}</a>
+                                    </li>
+                                <li class="meta-date"><a href="{% url 'common:blog-detail' object.slug %}">{{object.published_date}}</a></li>
+                                <li> {{object.read_time}} min read </li>
+                                    <li class="meta-comments"><a href="{% url 'common:blog-detail' object.slug %}"><i class="fa fa-comment"></i> 2</a></li>
+                                </ul>
+                            </div>
+                            <!-- End of Post Meta Info -->
+                        </div>
+                        <!-- End oF Post Thumbnail -->
+    
+                        <!-- Post Content -->
+                        <div class="post-content-cover my-drop-cap">
+                            <p>
+                            {{object.content|safe}}
+                            </p>
+                        </div>
+                        <!-- End of Post Content -->
+    
+                        <!-- Tags -->
+                        <div class="post-all-tags">
+                        {% for tag in object.tags.all %}
+                        <a href="{% url 'common:blog-detail' object.slug %}">{{tag.title}}</a>
+                        {% endfor %}
+                        </div>
+                        <!-- End of Tags -->
+                        
+                        <!-- Comments -->
+                        <ul class="post-all-comments">
+                            {% for comment in comments %}
+                            <li class="single-comment-wrapper">
+                                <!-- Single Comment -->
+                                <div class="single-post-comment">
+                                    <!-- Author Image -->
+                                    <div class="comment-author-image">
+                                        <img src="/static/assets/images/blogs/comment/author-1.jpg" alt="" class="img-fluid" data-rjs="2">
+                                    </div>
+                                    <!-- Comment Content -->
+                                    <div class="comment-content">
+                                        <div class="comment-author-name">
+                                            <h6>{{comment.name}}</h6> <span> {{comment.published_date}} </span>
+                                        </div>
+                                        <p>{{comment.comment}}</p>
+                                    </div>
+                                </div>
+                            </li>
+                            {% endfor %}
+                    </ul>
+                        <!-- End of Comments -->
+    
+                        <!-- Comment Form -->
+                        <div class="post-comment-form-cover">  
+                            <h3>Write your comment</h3>
+                            <form class="comment-form" method="post" action="{% url 'common:blog-comment' object.id %}">
+                                {% csrf_token %}
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Name" name="name">
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" placeholder="Email" name="email">
+                                    </div>
+                                    <div class="col-md-12">
+                                        <textarea class="form-control" placeholder="Write your comment" name="comment"></textarea>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <button type="submit" class="btn bizagn--base-btn">
+                                            <img src="/static/assets/images/btn-right-arrow.svg" alt="" class="svg left"> Submit
+                                            <img src="/static/assets/images/btn-right-arrow.svg" alt="" class="svg right">
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- End of Comment Form -->
+                    </div>
+                    <!-- End of Blog Details -->
+                </div>
+
+                <div class="col-lg-3">
+                    <!-- Sidebar -->
+                    <div class="bizagn--sidebar">
+                        <!-- widget -->
+                        <div class="widget">
+                            <div class="bizagn--widget widget_search">
+                                <form>
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Type Here">
+                                        <div class="input-group-append">
+                                            <button class="btn" type="button">
+                                                <i class="fa fa-search"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- End of widget -->
+
+                        <!-- widget -->
+                        <div class="widget">
+                            <div class="bizagn--widget widget_categories">
+                                <div class="widget-title">
+                                    <div class="bizagn--widget-title">
+                                        <h3>Categories</h3>
+                                    </div>
+                                </div>
+                                <div class="bizagn--widget-content">
+                                    <ul>
+                                    {% for category in categories %}
+                                    <li><a href="#">{{category.title}}</a><span>({{category.count}})</span></li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of widget -->
+
+                        <!-- Widget -->
+                        <div class="widget">
+                            <div class="bizagn--widget widget_posts">
+                                <div class="widget-title">
+                                    <div class="bizagn--widget-title">
+                                        <h3>Related Posts</h3>
+                                    </div>
+                                </div>
+                                <div class="bizagn--widget-content">
+                                {% for blog in related_blogs %}
+                                    <!-- Widget Post -->
+                                    <div class="bizagn--widget-post">
+                                        <!-- Thumbnail -->
+                                        <a href="#" class="bizagn--widget-thumb">
+                                        <img src="{{blog.main_image.url}}" alt="" class="img-fluid">
+                                        </a>
+                                        <!-- Meta & Title -->
+                                        <div class="bizagn--widget-meta-title">
+                                        <a href="#" class="w-meta">{{blog.published_date}}</a>
+                                        <a href="#" class="w-title">{{blog.title}}</a>
+                                        </div>
+                                    </div>
+                                {% endfor %}
+                                    <!-- End of Widget Post -->
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Widget -->
+
+                        <!-- Widget -->
+                        <div class="widget">
+                            <div class="bizagn--widget widget-posts">
+                                <div class="widget-title">
+                                    <div class="bizagn--widget-title">
+                                        <h3>Tags</h3>
+                                    </div>
+                                </div>
+                                <div class="bizagn--widget-content">
+                                    <ul>
+                                    {% for tag in object.tags.all %}
+                                    <li><a href="#">{{tag.title}}</a></li>
+                                    {% endfor %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- End of Widget -->
+                    </div>
+                    <!-- End of Sidebar -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End of Blogs -->
+
+{% endblock %}

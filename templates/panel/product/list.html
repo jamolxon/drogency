@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!--begin::Main-->
+{% include 'parts/mobile_header.html' %}
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="d-flex flex-row flex-column-fluid page">
+        {% include 'parts/aside.html' with menu_parent="product" menu_submenu="product-list" %}
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            {% include 'parts/header.html' %}
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <!--begin::Card-->
+                        <div class="card card-custom gutter-b">
+                            <div class="card-header flex-wrap py-3">
+                                <div class="card-title">
+                                    <h3 class="card-label">Маҳсулотлар
+                                        <span class="d-block text-muted pt-2 font-size-sm">Барча маҳсулотлар</span></h3>
+                                </div>
+
+                                {% if perms.product.change_product %}
+                                <div class="card-toolbar">
+
+                                    <!--begin::Button-->
+                                    <a href="{% url 'product-create'  %}" class="btn btn-primary font-weight-bolder">
+                                        <span class="svg-icon svg-icon-md">
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <circle fill="#000000" cx="9" cy="15" r="6" />
+                                                    <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon-->
+                                        </span>Янги қўшиш</a>
+                                    <!--end::Button-->
+                                </div>
+                                {% endif %}
+                            </div>
+                            <form method="get">
+                                <div class="form-group row">
+
+                                    <div class="col-lg-3 col-md-9 col-sm-12 mb-lg-0 mb-6  ml-10 mt-5">
+                                        <input type="text" class="form-control datatable-input" placeholder="Қидириш" value="{{request.GET.search}}" name="search" data-col-index="0" />
+                                    </div>
+
+                                    <button type="submit" class="btn btn-primary font-weight-bolder mt-5 ml-7 mb-1">
+                                        <span class="nav-icon">
+                                            <i class="fas fa-search"></i>
+                                        </span>
+                                    <span class="nav-text">Қидирув</span>
+                                    </button>
+
+                                </div>
+                            </form>
+
+                            <div class="card-body">
+                                {% if page_obj %}
+                                <!--begin: Datatable-->
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+
+                                            <th scope="col">Маҳсулот номи</th>
+                                            <th scope="col">Категорияси</th>
+                                            <th scope="col">Модели</th>
+                                            <th scope="col">Чегирма борми</th>
+
+                                            {% if perms.product.change_product %}
+                                            <th scope="col">Амаллар</th>
+                                            {% endif %}
+
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for product in page_obj %}
+                                        <tr>
+                                            <th scope="row"> <a href="{% url 'product-info' product.id %}">{{product.name|default_if_none:"-"|truncatewords:5}}</a> </th>
+                                            <td>{{product.category.name|default_if_none:"-"|truncatewords:7}}</td>
+                                            <td>{{product.model|default_if_none:"-"|truncatewords:7}}</td>
+                                            <td>
+                                                {% if product.has_discount == True %}
+                                                <i class="fas fa-check"></i>
+                                                {% else %}
+                                                <i class="fas fa-times" style="color:red;"></i>
+                                                {% endif %}
+                                            </td>
+
+
+                                            {% if perms.product.change_product %}
+                                            <td nowrap="nowrap">
+
+                                                <a href="{% url 'product-update' product.id %}"
+                                                    class="btn btn-sm btn-clean btn-icon" title="Таҳрирлаш"> <i
+                                                        class="la la-edit"></i>
+                                                </a>
+                                                <a href="{% url 'product-delete' product.id  %}" data-toggle="modal" data-target="#deleteModal"
+                                                    class="btn btn-sm btn-clean btn-icon removeButton" title="Ўчириш"> <i
+                                                        class="la la-trash"></i>
+                                                </a>
+
+
+                                                <!-- Success Popup -->
+                                                <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog"
+                                                    aria-labelledby="deleteModal" aria-hidden="true">
+                                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header"></div>
+                                                            <div class="modal-body mt-5">
+                                                                <h2 class="text-center mt-4 mb-3">Ўчириш</h2>
+                                                                <p class="text-center">Ишончингиз комилми?</p>
+                                                            </div>
+                                                            <div class="modal-footer mx-auto">
+
+                                                                <button type="button"
+                                                                    class="btn btn-outline-secondary mb-3 mr-3"
+                                                                    data-dismiss="modal">Ортга қайтиш
+                                                                </button>
+                                                                <a href="{% url 'product-delete' product.id %}" id="modalDeleteButton">
+                                                                    <button type="button" class="btn btn-danger mb-3">
+                                                                        Ўчириш
+                                                                    </button>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            {% endif %}
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                                {% else %}
+                                <center>
+                                    <div class="goals__error">
+                                        <span><svg width="138" height="127" viewBox="0 0 138 127" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <g opacity="0.7">
+                                                <path opacity="0.2" d="M70.4438 101.214C60.7476 101.214 46.8512 99.9886 38.5597 97.1651C36.7657 96.5543 34.7964 96.7412 33.1484 97.6761L18.1392 105.597C17.2666 106.057 16.2138 105.439 16.1928 104.454L15.7524 83.8007C15.7529 82.4215 15.3231 81.0754 14.5173 79.9549C9.48995 72.9644 4.51045 60.198 4.51045 51.6956C4.51045 46.3299 5.65141 41.1651 7.753 36.3264C2.80738 43.2742 0 51.2096 0 59.6386C0 68.1414 2.85675 76.142 7.88409 83.1327C8.68986 84.2532 9.11981 85.5992 9.11919 86.9785L9.11076 112.185C9.10969 115.231 12.4039 117.144 15.0578 115.639L33.3273 105.273C34.9752 104.338 36.9444 104.151 38.7386 104.762C47.0299 107.585 56.237 109.158 65.9336 109.158C95.2031 109.158 120.014 94.8316 128.624 75.0077C117.524 90.6022 95.6355 101.214 70.4438 101.214Z" fill="#27459F"/>
+                                                <path opacity="0.2" d="M102.41 47.4663C102.41 47.4671 102.411 47.4671 102.411 47.4678C102.775 46.8235 103.414 46.3273 104.325 45.9897C106.686 45.1141 110.294 46.6318 111.377 47.235C113.376 48.3668 115.917 47.6723 117.059 45.6796C117.131 45.5555 117.196 45.4293 117.252 45.301C117.308 45.1779 117.355 45.0532 117.397 44.9277C117.398 44.9226 117.401 44.9179 117.403 44.9128C116.32 45.2709 115.098 45.1922 114.029 44.5872C112.947 43.9841 109.339 42.4662 106.978 43.342C105.779 43.7871 103.406 44.6946 102.41 47.4663Z" fill="#E6F7FE"/>
+                                                <path opacity="0.2" fill-rule="evenodd" clip-rule="evenodd" d="M6.51296 38.1529C17.1658 21.565 39.7699 10.1199 65.9333 10.1199C102.347 10.1199 131.867 32.2904 131.867 59.6389C131.867 66.1567 130.191 72.3805 127.142 78.0803C117.404 96.296 93.1392 107.834 65.4029 107.834C55.7064 107.834 46.4994 106.262 38.2079 103.438C36.4139 102.827 34.4446 103.015 32.7966 103.949L15.0578 114.58C12.404 116.085 10.171 114.172 10.1721 111.126L9.91528 86.9787C9.91574 85.5995 9.48594 84.2535 8.68018 83.1329C3.65283 76.1423 0.796082 68.1417 0.796082 59.6389C0.796082 51.9402 2.33923 44.6519 6.51296 38.1529ZM71.4554 37.3935L80.4617 37.3901C87.8001 37.3901 93.7694 43.2693 93.7694 50.4954C93.7694 57.7214 87.7986 63.6006 80.4617 63.6006C79.3813 63.6006 77.5262 63.6082 75.8013 63.6171V73.2292C75.8013 75.5311 73.9316 76.6026 71.6254 76.6026C69.3191 76.6026 68.2453 75.5309 68.2453 73.2292V41.5575C68.2453 41.5064 71.3155 37.3935 71.4554 37.3935ZM76.6361 55.2778C78.0993 55.2712 79.5503 55.2657 80.4617 55.2657C83.1476 55.2657 85.4167 53.081 85.4167 50.4954C85.4167 47.9097 83.1476 45.7253 80.4617 45.7253H76.6117C76.1711 45.7253 75.8146 46.0822 75.8157 46.5217C75.8197 48.121 75.8231 49.6871 75.8231 50.4954C75.8231 51.4337 75.8289 52.9594 75.8361 54.4873C75.8382 54.926 76.1964 55.2799 76.6361 55.2778ZM54.8723 76.8677C50.8037 76.8677 47.3627 75.1119 45.2133 72.2629C44.9826 72.4701 44.7472 72.6719 44.5071 72.8684C41.0491 75.6974 36.6296 76.8677 31.8195 76.8677C20.7677 76.8677 12.3069 68.4237 12.3069 57.3937C12.3069 51.9651 13.9544 47.0346 17.4841 43.4269C21.1259 39.7044 26.2071 37.3901 31.8195 37.3901C41.2879 37.3901 49.2438 43.9763 51.3294 52.7993C52.4536 52.4694 53.6426 52.2923 54.8723 52.2923C61.8078 52.2923 67.4498 57.9235 67.4498 64.8448C67.4498 67.6339 66.5336 70.2136 64.9861 72.2994C62.6925 75.3901 59.0129 76.8677 54.8723 76.8677ZM54.8723 60.6771C52.5699 60.6771 50.6964 62.5466 50.6964 64.8445C50.6964 67.1425 52.5696 69.0121 54.8723 69.0121C57.1748 69.0121 59.0484 67.1425 59.0484 64.8445C59.0484 62.5466 57.1748 60.6771 54.8723 60.6771ZM94.3493 72.0103C97.8499 75.8641 102.168 76.8677 106.78 76.8959C111.877 76.8959 115.474 75.3183 117.633 72.4545C119.082 70.5328 119.882 68.2704 120.053 66.0753C120.539 59.7808 116.385 54.5143 110.176 53.5526C106.493 52.9824 104.206 52.3419 102.666 50.5934C102.136 49.9899 101.927 48.9987 102.146 48.1268C102.226 47.8122 102.356 47.5241 102.537 47.2634C102.916 46.7171 103.611 46.0714 104.423 45.7703C106.785 44.8945 110.368 46.5191 111.451 47.1223C113.45 48.2544 115.817 47.5602 116.961 45.5676C117.012 45.4784 117.079 45.4102 117.145 45.3436C117.227 45.2605 117.306 45.1797 117.349 45.0634C118.053 43.1849 117.311 41.0207 115.511
+                                                    39.9919C114.746 39.5549 107.849 35.7901 101.415 38.1765C100.127 38.6546 98.9631 39.3074 97.9557 40.1049C96.0191 41.6358 94.6529 43.7003 94.0487 46.0883C93.1594 49.6077 94.3217 52.912 96.6569 55.5644C100.191 59.5804 105.313 60.7136 109.509 61.3636C112.498 61.8265 112.28 65.1099 112.256 65.4342C112.197 66.1856 111.236 68.4008 108.22 68.9605C107.794 69.0396 107.315 69.0857 106.78 69.0899C104.814 69.1052 101.899 68.4952 100.009 66.4128C98.8465 65.1335 97.0709 64.741 95.5345 65.2767C95.2205 65.3863 95.1157 65.5347 94.9834 65.7221C94.8999 65.8403 94.8054 65.9741 94.6406 66.1235C92.9309 67.6692 92.8006 70.3049 94.3493 72.0103ZM31.8195 45.7253C25.3729 45.7253 20.1283 50.9595 20.1283 57.3937C20.1283 63.8278 25.3729 69.0621 31.8195 69.0621C38.2664 69.0621 43.5112 63.8278 43.5112 57.3937C43.5112 50.9595 38.2664 45.7253 31.8195 45.7253ZM71.2829 91.4016C71.2829 94.3503 68.8878 96.7407 65.9334 96.7407C62.979 96.7407 60.5839 94.3503 60.5839 91.4016C60.5839 88.4529 62.979 86.0626 65.9334 86.0626C68.8878 86.0626 71.2829 88.4529 71.2829 91.4016ZM47.2098 96.7407C50.1642 96.7407 52.5593 94.3503 52.5593 91.4016C52.5593 88.4529 50.1642 86.0626 47.2098 86.0626C44.2554 86.0626 41.8603 88.4529 41.8603 91.4016C41.8603 94.3503 44.2554 96.7407 47.2098 96.7407ZM90.0066 91.4016C90.0066 94.3503 87.6116 96.7407 84.6569 96.7407C81.7024 96.7407 79.3074 94.3503 79.3074 91.4016C79.3074 88.4529 81.7024 86.0626 84.6569 86.0626C87.6116 86.0626 90.0066 88.4529 90.0066 91.4016Z" fill="#5D6FDD"/>
+                                                <path opacity="0.2" d="M101.623 121.001C100.821 121.001 100.067 120.515 99.7632 119.723C99.3707 118.699 99.8859 117.551 100.912 117.16C108.96 114.092 116.265 109.964 122.627 104.89C123.485 104.205 124.737 104.344 125.424 105.201C126.109 106.057 125.969 107.307 125.112 107.992C118.428 113.323 110.765 117.656 102.333 120.87C102.098 120.959 101.859 121.001 101.623 121.001Z" fill="#27459F"/>
+                                                <path opacity="0.2" d="M9.93248 13.3515C9.32666 13.3515 8.72866 13.0766 8.33781 12.5556C7.67925 11.6777 7.85865 10.4329 8.73848 9.77574C13.7552 6.02872 19.3238 2.7967 25.2902 0.169387C26.2959 -0.273048 27.4704 0.181031 27.9143 1.18451C28.3579 2.18798 27.9027 3.36012 26.8971 3.80309C21.2062 6.30912 15.8991 9.38839 11.1233 12.9553C10.7655 13.2225 10.3474 13.3515 9.93248 13.3515Z" fill="#27459F"/>
+                                                <path opacity="0.2" d="M3.9658 30.3736C3.52942 30.3736 3.09027 30.2309 2.72304 29.9375C1.86529 29.2517 1.72698 28.0021 2.41392 27.1463C12.0554 15.1361 26.6446 6.38546 43.4939 2.50659C44.564 2.26009 45.6334 2.92625 45.8804 3.99512C46.1273 5.06373 45.4595 6.12996 44.3886 6.37646C28.4081 10.0555 14.6044 18.3134 5.5203 29.6294C5.12715 30.1189 4.54924 30.3736 3.9658 30.3736Z" fill="#27459F"/>
+                                                <path opacity="0.2" d="M78.6255 118.128C77.6157 118.128 76.751 117.365 76.6478 116.341C76.5379 115.25 77.3355 114.276 78.4289 114.167C97.9984 112.206 115.552 103.489 126.586 90.2496C127.288 89.4066 128.542 89.2914 129.389 89.9928C130.234 90.6941 130.349 91.946 129.645 92.7893C117.949 106.822 99.4259 116.054 78.8261 118.118C78.7589 118.125 78.6919 118.128 78.6255 118.128Z" fill="#27459F"/>
+                                            </g>
+                                        </svg>
+                                        </span>
+                                        <div class="goals__noinfo">Ҳеч нарса топилмади</div>
+                                    </div>
+                                </center>
+                                {% endif %}
+                                <!--end: Datatable-->
+                                {% if page_obj.paginator %}
+                                {% if page_obj.has_next or page_obj.has_previous%}
+                                <!--begin::Pagination-->
+                                <div class="d-flex justify-content-center align-items-center flex-wrap">
+                                    <div class="d-flex flex-wrap py-2 mr-3">
+                                        {% if page_obj.has_previous %}
+                                        <a href="?page={{page_obj.previous_page_number}}" class="btn btn-icon btn-sm btn-light mr-2 my-1">
+                                            <i class="ki ki-bold-arrow-back icon-xs"></i>
+                                        </a>
+                                        {% else %}
+
+                                        {% endif %}
+
+                                        {% for page in page_obj.paginator.page_range %}
+                                        {% if page_obj.number == page %}
+                                        <li class="btn btn-icon btn-sm border-0 btn-light btn-hover-primary active mr-2 my-1">{{page}}</li>
+                                        {% else %}
+                                        <a href="?page={{page}}" class="btn btn-icon btn-sm border-0 btn-light btn-hover-primary mr-2 my-1">{{page}}</a>
+                                        {% endif %}
+                                        {% endfor %}
+
+                                        {% if page_obj.has_next %}
+                                        <a href="?page={{page_obj.next_page_number}}" class="btn btn-icon btn-sm btn-light mr-2 my-1">
+                                            <i class="ki ki-bold-arrow-next icon-xs"></i>
+                                        </a>
+
+                                        {% else %}
+
+                                        {% endif %}
+
+                                    </div>
+
+                                </div>
+                                {% else %}
+                                <div></div>
+                                <!--end:: Pagination-->
+                                {% endif %}
+                                {% endif %}
+                            </div>
+
+                            <style media="screen">
+/* CSS for Success Popup */
+#successModal .modal {
+    &-header {
+        background-color: #80B80D;
+        height:6rem;
+        &:after {
+            font-family: "Material Icons";
+            content: '\e876';
+            font-weight: 600;
+            color:#fff;
+            background-color: #BDE766;
+            font-size:3rem;
+            text-align:center;
+            padding:0;
+            width: 7rem;
+            height: 7rem;
+            line-height:7rem;
+            border-radius: 50%;
+            margin: .4em auto 0 auto;
+            animation: zoomIt 0.3s;
+        }
+    }
+    &-body h2 {
+        color: #80B80D;
+    }
+    &-footer {
+        border:0;
+    }
+}
+
+/* CSS for Delete Popup */
+#deleteModal .modal {
+    &-header {
+        background-color: #DC3545;
+        height:6rem;
+        &:after {
+            font-family: "Material Icons";
+            content: '\e5cd';
+            font-weight: 600;
+            color:#fff;
+            background-color: #FF959F;
+            font-size:3rem;
+            text-align:center;
+            padding:0;
+            width: 7rem;
+            height: 7rem;
+            line-height:7rem;
+            border-radius: 50%;
+            margin: .4em auto 0 auto;
+            animation: zoomIt 0.3s;
+        }
+    }
+    &-body h2 {
+        color: #DC3545;
+    }
+
+    &-footer {
+        border:0;
+    }
+}
+
+/* Animation */
+@keyframes zoomIt {
+from {
+    transform: scale(0, 0);
+}
+to {
+    transform: scale(1.0, 1.0);
+}
+}
+
+i{
+    color: #3699ff;
+    border-bottom-color: #3699ff;
+}
+
+</style>
+
+                        </div>
+                        <!--end::Card-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            {% include 'parts/footer.html' %}
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Main-->
+{% include 'parts/user_panel.html' %}
+
+{% include 'parts/scroll_top.html' %}
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'scripts.js' %}"></script>
+    {% endblock %}

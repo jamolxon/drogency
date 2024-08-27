@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+{%  block head%}
+<style>
+#my-btn:hover{
+background: white;
+color: #3699FF
+}
+#my-btn:hover .inner-svg circle, .inner-svg path, .inner-svt  {
+fill: #3699FF;
+}
+</style>
+{% endblock %}
+
+	<body id="kt_body" class="header-fixed header-mobile-fixed subheader-enabled subheader-fixed aside-enabled aside-fixed aside-minimize-hoverable page-loading">
+		<!--begin::Main-->
+		<div class="d-flex flex-column flex-root">
+			<!--begin::Error-->
+			<div class="error error-6 d-flex flex-row-fluid bgi-size-cover bgi-position-center" style="background-image: url(https://preview.keenthemes.com/metronic/theme/html/demo1/dist/assets/media/error/bg6.jpg);">
+
+					<div class="card-toolbar ml-5 mt-6">
+
+			<!--begin::Button-->
+			<a href="" class="btn btn-primary font-weight-bolder" id="my-btn">
+			<span class="svg-icon outer-svg svg-icon-md">
+				<!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+				<svg class="inner-svg" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+					<g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+						<rect x="0" y="0" width="24" height="24" />
+						<circle fill="#000000" cx="9" cy="15" r="6" />
+						<path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+					</g>
+				</svg>
+				<!--end::Svg Icon-->
+			</span>Bosh Panel</a>
+			<!--end::Button-->
+		</div>
+
+
+
+				<!--begin::Content-->
+				<div class="d-flex flex-column flex-row-fluid text-center">
+					<h1 class="error-title font-weight-boldest text-white mb-12" style="margin-top: 12rem;">Hatolik...</h1>
+					<p class="display-4 font-weight-bold text-white">Bunday sahifa mavjud emas</p>
+
+
+				<script type="text/javascript">
+
+					document.getElementsByTagName("h1")
+					[0].style.fontSize = '10vw';
+
+					document.getElementsByTagName("p")
+					[0].style.fontSize = '4vw';
+
+				</script>
+				</div>
+				<!--end::Content-->
+			</div>
+			<!--end::Error-->
+		</div>
+		<!--end::Main-->
+
+	</body>
+	<!--end::Body-->
+{% endblock %}

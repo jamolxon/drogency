@@ -1,0 +1,236 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load static %}
+{% block content %}
+
+
+<!--begin::Main-->
+{% include 'parts/mobile_header.html' %}
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="d-flex flex-row flex-column-fluid page">
+        {% include 'parts/aside.html' with menu_parent="products" menu_submenu="products-list" %}
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            {% include 'parts/header.html' %}
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <!--begin::Card-->
+                        <div class="card card-custom gutter-b">
+                            <div class="card-header flex-wrap py-3">
+                                <div class="card-title">
+                                    <h3 class="card-label">Маҳсулотлар нархлари
+                                        <span class="d-block text-muted pt-2 font-size-sm">Барча маҳсулотлар нархлари</span></h3>
+                                </div>
+                                <div class="card-toolbar">
+
+                                    <!--begin::Button-->
+                                    <a href="{% url 'product-create'  %}" class="btn btn-primary font-weight-bolder">
+                                        <span class="svg-icon svg-icon-md">
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <circle fill="#000000" cx="9" cy="15" r="6" />
+                                                    <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon-->
+                                        </span>Янги қўшиш</a>
+                                    <!--end::Button-->
+                                </div>
+                            </div>
+                            <div class="card-body">
+
+                                <!--begin: Datatable-->
+                                <!--begin::Row-->
+                        <div class="row">
+                                    {% for product in objects.products %}
+                            <div class="col-xl-6">
+                                <!--begin::Base Table Widget 7-->
+                                <div class="card card-custom card-stretch gutter-b">
+                                    <!--begin::Header-->
+                                    <div class="card-header border-0 mt-5">
+                                        <h3 class="card-title align-items-start flex-column text-dark">
+                                            <span class="font-weight-bolder text-dark"><h1 style="display:inline;">{{product.name}}  {{product.model}} {{product.color}}</h1></span>
+                                            <span class="text-muted mt-2 font-weight-bold font-size-sm"><h5>Серия рақами - {{product.serial_number}}</h5></span>
+                                            <span class="mt-4 font-weight-bold font-size-sm"><h2 style="display:inline;">Нархи - {{product.product_price|intcomma}} сўм</h2></span>
+                                            <span class="mt-4 font-weight-bold font-size-sm"><h2 style="display:inline;">Чегирма - {% if product.has_discount %} {{product.discount_percentage|intcomma}}% {% else %} Йўқ {% endif %} </h2></span>
+                                            {% if product.has_discount %}<span class="mt-4 font-weight-bold font-size-sm"><h2 style="display:inline;">Чегирмадаги нархи - {{product.sale_price|intcomma}} сўм</h2></span> {% endif %}
+                                        </h3>
+                                    </div>
+                                    <!--end::Header-->
+                                    <!--begin::Body-->
+                                <div class="card-body py-0 mt-5">
+                                        <!--begin::Table-->
+                                        <div class="table-responsive">
+                                            <table class="table table-borderless table-vertical-center">
+                                                <thead>
+                                                    <tr>
+                                                        <th class="p-0" style="width: 50px"></th>
+                                                        <th class="p-0" style="min-width: 150px"></th>
+                                                        <th class="p-0" style="min-width: 120px"></th>
+                                                        <th class="p-0" style="min-width: 70px"></th>
+                                                        <th class="p-0" style="min-width: 70px"></th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <h3 class="card-title align-items-start flex-column text-dark mt-7">
+                                                        <span class="font-weight-bolder text-dark"><h1 style="display:inline;">Муддатли тўлов учун</h1></span>
+                                                    </h3>
+
+                                                    {% for loan in objects.product_loans %}
+                                                            {% if loan.product.id == product.id %}
+                                                    <tr>
+                                                        <td class="pl-0">
+                                                            <div class="symbol symbol-50 symbol-fixed mr-2">
+                                                                <div class="symbol-label" style="background-color: light-blue;">{{loan.plan.month}}</div>
+                                                            </div>
+                                                        </td>
+                                                        <td class="pl-0">
+                                                            <a href="#" class="text-dark font-weight-bolder text-hover-primary mb-1 font-size-lg">
+                                                                <h1> {{loan.plan.name}} </h1>
+                                                            </a>
+                                                        </td>
+                                                        <td class="pr-0">
+                                                            <div class="d-flex align-items-center justify-content-end">
+                                                                <span class="mr-1">
+                                                                    <span class="svg-icon svg-icon-md svg-icon-gray-600">
+                                                                    </span>
+                                                                </span>
+                                                            </div>
+                                                        </td>
+                                                        <td class="text-right">
+                                                        </td>
+                                                        <td class="text-right pr-0">
+                                                            <span class="text-muted font-weight-bold d-block">Нархи</span>
+                                                            <span class="text-dark-75 font-weight-bolder d-block font-size-lg">
+                                                                <h1> {{loan.price|intcomma}} сўм</h1>
+                                                            </span>
+                                                        </td>
+                                                    </tr>
+                                                            {% endif %}
+                                                    {% endfor %}
+                                                </tbody>
+                                                
+                                            </table>
+                                            <br>
+                                        </div>
+                                        <!--end::Table-->
+                                    </div>
+                                    <!--end::Body-->
+                                </div>
+                                <!--end::Base Table Widget 7-->
+                            </div>
+                                    {% endfor %}
+
+                        </div>
+                            </div>
+
+                            <style media="screen">
+/* CSS for Success Popup */
+#successModal .modal {
+    &-header {
+        background-color: #80B80D;
+        height:6rem;
+        &:after {
+            font-family: "Material Icons";
+            content: '\e876';
+            font-weight: 600;
+            color:#fff;
+            background-color: #BDE766;
+            font-size:3rem;
+            text-align:center;
+            padding:0;
+            width: 7rem;
+            height: 7rem;
+            line-height:7rem;
+            border-radius: 50%;
+            margin: .4em auto 0 auto;
+            animation: zoomIt 0.3s;
+        }
+    }
+    &-body h2 {
+        color: #80B80D;
+    }
+    &-footer {
+        border:0;
+    }
+}
+
+/* CSS for Delete Popup */
+#deleteModal .modal {
+    &-header {
+        background-color: #DC3545;
+        height:6rem;
+        &:after {
+            font-family: "Material Icons";
+            content: '\e5cd';
+            font-weight: 600;
+            color:#fff;
+            background-color: #FF959F;
+            font-size:3rem;
+            text-align:center;
+            padding:0;
+            width: 7rem;
+            height: 7rem;
+            line-height:7rem;
+            border-radius: 50%;
+            margin: .4em auto 0 auto;
+            animation: zoomIt 0.3s;
+        }
+    }
+    &-body h2 {
+        color: #DC3545;
+    }
+
+    &-footer {
+        border:0;
+    }
+}
+
+/* Animation */
+@keyframes zoomIt {
+from {
+    transform: scale(0, 0);
+}
+to {
+    transform: scale(1.0, 1.0);
+}
+}
+
+i{
+    color: #3699ff;
+    border-bottom-color: #3699ff;
+}
+
+</style>
+
+                        </div>
+                        <!--end::Card-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            {% include 'parts/footer.html' %}
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Main-->
+{% include 'parts/user_panel.html' %}
+
+{% include 'parts/scroll_top.html' %}
+
+{% endblock %}
+
+{% block script %}
+<script src="{% static 'scripts.js' %}"></script>
+    {% endblock %}

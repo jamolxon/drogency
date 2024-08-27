@@ -1,0 +1,226 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+
+<!--begin::Main-->
+{% include 'parts/mobile_header.html' %}
+<div class="d-flex flex-column flex-root">
+    <!--begin::Page-->
+    <div class="d-flex flex-row flex-column-fluid page">
+        {% include 'parts/aside.html' with menu_parent="product" menu_submenu="product-update" %}
+        <!--begin::Wrapper-->
+        <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
+            {% include 'parts/header.html' %}
+            <!--begin::Content-->
+            <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+                <!--begin::Entry-->
+                <div class="d-flex flex-column-fluid">
+                    <!--begin::Container-->
+                    <div class="container">
+                        <!--begin::Card-->
+                        <div class="card card-custom gutter-b">
+                            <div class="card-header flex-wrap py-3">
+                                <div class="card-title">
+                                    <h3 class="card-label">Маҳсулотлар
+                                        <span class="d-block text-muted pt-2 font-size-sm">Маҳсулот таҳрирлаш</span></h3>
+                                </div>
+                                <div class="card-toolbar">
+
+                                    <!--begin::Button-->
+                                    <a href="{% url 'product-list' %}" class="btn btn-primary font-weight-bolder">
+                                        <span class="svg-icon svg-icon-md">
+                                            <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg-->
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                <rect x="0" y="0" width="24" height="24" />
+                                                <circle fill="#000000" cx="9" cy="15" r="6" />
+                                                <path d="M8.8012943,7.00241953 C9.83837775,5.20768121 11.7781543,4 14,4 C17.3137085,4 20,6.6862915 20,10 C20,12.2218457 18.7923188,14.1616223 16.9975805,15.1987057 C16.9991904,15.1326658 17,15.0664274 17,15 C17,10.581722 13.418278,7 9,7 C8.93357256,7 8.86733422,7.00080962 8.8012943,7.00241953 Z" fill="#000000" opacity="0.3" />
+                                                </g>
+                                            </svg>
+                                            <!--end::Svg Icon-->
+                                        </span>Ортга қайтиш</a>
+                                        <!--end::Button-->
+                                </div>
+                            </div>
+
+                            <form class="form form-label" action="" method="post" enctype="multipart/form-data">
+                                {% csrf_token %}
+
+                                <ul class="nav nav-pills">
+                                    <li class="nav-item ml-7" >
+                                        <a class="nav-link active" id="uzbek-tab" data-toggle="pill" href="#uzbek"
+                                                                                                     aria-expanded="true"><i class="flag-icon flag-icon-uz mr-1"></i>
+                                                                                                     Ўзбекча </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="russian-tab" data-toggle="pill" href="#russian"
+                                                                                                aria-expanded="false"><i class="flag-icon flag-icon-ru mr-1"></i> Русский
+                                        </a>
+                                    </li>
+                                    <li class="nav-item" >
+                                        <a class="nav-link" id="ozbek-tab" data-toggle="pill" href="#ozbek"
+                                                                                              aria-expanded="true"><i class="flag-icon flag-icon-uz mr-1"></i>
+                                                                                              O'zbekcha</a>
+                                    </li>
+                                </ul>
+
+                                <div class="tab-content main-editor">
+                                    <div class="tab-pane active" id="uzbek" role="tabpanel" aria-labelledby="home-tab"
+                                                                                            aria-expanded="false">
+                                        <div class="card-header">
+                                            <h4 class="card-title" style="text-transform: inherit;"><i class="flag-icon flag-icon-uz mr-1"></i>[Ўз]</h4>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="card-body pb-0 mx-25">
+
+                                                {% for field in form %}
+                                                {% if field.field.widget.attrs.language == 'uz' %}
+                                                <div class="form-group row">
+
+                                                    <label class="col-form-label text-right col-lg-3 col-sm-12" for="{{field.auto_id}}">
+                                                        {% if field.field.required %}
+                                                        <b>{{field.label}}</b>
+                                                        {% else %}
+                                                        {{field.label}}
+                                                        {% endif %}
+                                                    </label>
+                                                    <div class="col-lg-9 col-md-9 col-sm-12">
+                                                        {% language 'uz' %}
+                                                        <span style="color:red;">{{field.errors}}</span>
+                                                        {% endlanguage %}
+                                                        {{field}}
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane" id="russian" role="tabpanel" aria-labelledby="russian-tab"
+                                                                                       aria-expanded="false">
+                                        <div class="card-header">
+                                            <h4 class="card-title" style="text-transform: inherit;"><i class="flag-icon flag-icon-ru mr-1"></i>[RU]</h4>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="card-body pb-0 mx-25">
+
+                                                {% for field in form %}
+                                                {% if field.field.widget.attrs.language == 'ru' %}
+                                                <div class="form-group row">
+
+                                                    <label class="col-form-label text-right col-lg-3 col-sm-12" for="{{field.auto_id}}">
+                                                        {% if field.field.required %}
+                                                        <b>{{field.label}}</b>
+                                                        {% else %}
+                                                        {{field.label}}
+                                                        {% endif %}
+                                                    </label>
+                                                    <div class="col-lg-9 col-md-9 col-sm-12">
+                                                        {% language 'ru' %}
+                                                        <span style="color:red;">{{field.errors}}</span>
+                                                        {% endlanguage %}
+                                                        {{field}}
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                                {% endfor %}
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="tab-pane" id="ozbek" role="tabpanel" aria-labelledby="ozbek-tab"
+                                                                                     aria-expanded="false">
+                                        <div class="card-header">
+                                            <h4 class="card-title" style="text-transform: inherit;"><i class="flag-icon flag-icon-uz mr-1"></i>[SR]</h4>
+                                        </div>
+                                        <div class="card-content">
+                                            <div class="card-body pb-0 mx-25">
+
+                                                {% for field in form %}
+                                                {% if field.field.widget.attrs.language == 'sr' %}
+                                                <div class="form-group row">
+
+                                                    <label class="col-form-label text-right col-lg-3 col-sm-12" for="{{field.auto_id}}">
+                                                        {% if field.field.required %}
+                                                        <b>{{field.label}}</b>
+                                                        {% else %}
+                                                        {{field.label}}
+                                                        {% endif %}
+                                                    </label>
+                                                    <div class="col-lg-9 col-md-9 col-sm-12">
+                                                        {% language 'uz' %}
+                                                        <span style="color:red;">{{field.errors}}</span>
+                                                        {% endlanguage %}
+                                                        {{field}}
+                                                    </div>
+                                                </div>
+                                                {% endif %}
+                                                {% endfor %}
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-content card-footer">
+                                    <div class="card-body pb-0 mx-25">
+                                        {% for field in form %}
+                                        {% if field.field.widget.attrs.language == 'all' %}
+                                        <div class="form-group row">
+
+                                            <label class="col-form-label text-right col-lg-3 col-sm-12" for="{{field.auto_id}}">
+                                                {% if field.field.required %}
+                                                <b>{{field.label}}</b>
+                                                {% else %}
+                                                {{field.label}}
+                                                {% endif %}
+                                            </label>
+                                            <div class="col-lg-9 col-md-9 col-sm-12">
+                                                {% language 'uz' %}
+                                                <span style="color:red;">{{field.errors}}</span>
+                                                {% endlanguage %}
+                                                {{field}}
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </div>
+
+                                    <div class="card-footer">
+                                        <div class="row">
+                                            <div class="col-lg-3"></div>
+                                            <div class="col-lg-9">
+                                                <button type="submit" class="btn btn-primary mr-2" name="save-edit">Сақлаш ва саҳифада қолиш</button>
+                                                <button type="submit" class="btn btn-primary mr-2" name="saved">Сақлаш</button>
+                                                <a href="{% url 'product-list'  %}" class="btn btn-secondary"><span>Бекор қилиш</span></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                            </form>
+                                </div>
+
+                        </div>
+                        <!--end::Card-->
+                    </div>
+                    <!--end::Container-->
+                </div>
+                <!--end::Entry-->
+            </div>
+            <!--end::Content-->
+            {% include 'parts/footer.html' %}
+        </div>
+        <!--end::Wrapper-->
+    </div>
+    <!--end::Page-->
+</div>
+<!--end::Main-->
+{% include 'parts/user_panel.html' %}
+
+{% include 'parts/scroll_top.html' %}
+
+
+{% endblock %}

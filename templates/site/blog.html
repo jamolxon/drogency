@@ -1,0 +1,75 @@
+{% extends 'site/base.html' %}
+{% load static %}
+{% block content %}
+
+<!-- Page Title -->
+<div class="bizagn--page-title">
+    <h2>Blog</h2>
+    <p>Tijgers ook zwijnen planter jungles gewicht had met een. koopen er de gedurende nabijheid op Heb alais assam.</p>
+    <div class="bizagn--page-bc">
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li>Blog</li>
+        </ul>
+    </div>
+</div>
+<!-- End of Page Title -->
+
+<!-- Blogs -->
+<section class="pt-120 pb-120">
+    <div class="container">
+        <div class="row bizagn--blog-section">
+
+            {% for blog in objects %}
+            <!-- Blog Item -->
+            <div class="col-md-6">
+                <div class="bizagn--blog-item">
+                    <a href="#" class="bizagn--post-thumb">
+                        <img src="{{blog.main_image.url}}" alt="" class="img-fluid">
+                    </a>
+                    <div class="bizagn--blog-info">
+                        <h3> <a href="#"> {{blog.title}} </a></h3>
+                        <p>{{blog.description}}</p>
+                        <div class="bizagn--blog-meta">
+                            <ul class="list-inline">
+                                <li>By <a href="#">{{blog.author}}</a></li>
+                                <li><a href="#">{{blog.published_date}}</a></li>
+                                <li><a href="#">{% for category in blog.categories.all %} {{category.title}} {% endfor %}</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- End of Blog Item -->
+            {% endfor %}
+
+        </div>
+
+        {% if page_obj.paginator %}
+        {% if page_obj.has_next or page_obj.has_previous%}
+        <!-- Pagination -->
+        <div class="bizagn--pagination">
+            {% if page_obj.has_previous %}
+            <a href="?page={{page_obj.previous_page_number}}"><i class="fa fa-angle-left"></i></a>
+            {% endif %}
+
+            {% for page in page_obj.paginator.page_range %}
+            {% if page_obj.number == page %}
+            <span class="current" style="color:red;">{{page}}</span>
+            {% else %}
+            <a href="?page={{page}}">{{page}}</a>
+            {% endif %}
+            {% endfor %}
+
+            {% if page_obj.has_next %}
+            <a href="?page={{page_obj.next_page_number}}"><i class="fa fa-angle-right"></i></a>
+        </div>
+        {% endif %}
+        <!-- End of Pagination -->
+        {% endif%}
+        {% endif%}
+    </div>
+</section>
+<!-- End of Blogs -->
+
+{% endblock %}

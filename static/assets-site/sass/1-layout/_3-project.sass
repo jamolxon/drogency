@@ -1,0 +1,59 @@
+.bizagn--project-filter
+    position: relative
+    .bizagn--project-filter-buttons
+        position: absolute
+        top: -104px
+        right: 0
+        +mobileLg
+            position: relative
+            top: -40px
+            right: 0
+        button
+            font-weight: 700
+            font-size: 16px
+            color: $base
+            margin-left: 25px
+            transition: .4s ease
+            &:hover
+                color: $hover
+            &:first-child
+                margin-left: 0
+            +mobileLg
+                margin-left: 0px
+                margin-right: 10px
+
+.bizagn--filter-item
+    position: relative
+    display: inline-block
+    &:hover
+        .bizagn--filter-item-data
+            opacity: 1
+            margin-top: 0
+    .bizagn--filter-item-data
+        position: absolute
+        top: 50%
+        transform: translateY(-50%)
+        width: 100%
+        padding: 38px 75px 31px 30px
+        background-color: #ffffff
+        opacity: 0
+        transition: .4s ease
+        margin-top: -25px
+        h4
+            color: #101f35
+            font-size: 20px
+            font-family: $mont
+            a
+                &:hover
+                    color: $base
+        p
+            font-family: $vollk
+            font-weight: 700
+            color: $hover
+            margin-top: 6px
+        > a
+            position: absolute
+            top: 50%
+            transform: translateY(-50%)
+            right: 30px
+            animation: lrmove 1.2s infinite

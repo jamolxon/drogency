@@ -23,7 +23,7 @@ class HomeView(View):
                 "project_categories": project_category
                 }
 
-        return render(request, "index.html", context)
+        return render(request, "site/index.html", context)
 
 
 
@@ -31,7 +31,7 @@ class ProjectDetailView(DetailView):
     queryset = models.Project.objects.all()
     slug_field = "slug"
     context_object_name = "object"
-    template_name = "project-details.html"
+    template_name = "site/project-details.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -48,7 +48,7 @@ class BlogDetailView(DetailView):
     queryset = models.Blog.objects.all()
     slug_field = "slug"
     context_object_name = "object"
-    template_name = "blog-details.html"
+    template_name = "site/blog-details.html"
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -64,7 +64,7 @@ class BlogDetailView(DetailView):
 
 class BlogListView(ListView):
     model = models.Blog
-    template_name = "blog.html"
+    template_name = "site/blog.html"
     context_object_name = "objects"
     paginate_by = 1
 
@@ -84,4 +84,4 @@ class AddComment(View):
 		else:
 			form = BlogCommentForm()
 
-		return render(request, 'blog-details.html', {'form':form})
+		return render(request, 'site/blog-details.html', {'form':form})
