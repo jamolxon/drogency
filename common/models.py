@@ -2,6 +2,8 @@ from django.db import models
 from django.http.request import uploadhandler
 from django.utils.translation import gettext_lazy as _
 from django.utils import timezone
+from django.dispatch import receiver
+from django.db.models.signals import pre_save, post_save, m2m_changed
 
 from django_resized import ResizedImageField
 from ckeditor.fields import RichTextField
@@ -22,6 +24,7 @@ class Slider(models.Model):
 
 class ProjectCategory(models.Model):
     title = models.CharField(_("title"), max_length=256)
+    count = models.IntegerField(_("count"), default=0)
 
     class Meta:
         db_table = "project_category"
@@ -38,8 +41,8 @@ class Project(models.Model):
     slug = models.SlugField(_("slug"), max_length=256)
     description = models.TextField(_("description"))
     categories = models.ManyToManyField(ProjectCategory, verbose_name=_("categories"), related_name="projects")
-    image_small = ResizedImageField(_("image small"), size=[370, 379], quality=95, crop=["middle", "center"], upload_to="projects/%Y/%m")
-    image_large = ResizedImageField(_("image large"), size=[1100, 700], quality=95, crop=["middle", "center"], upload_to="projects/%Y/%m")
+    image_small = ResizedImageField(_("image small"), blank=True, null=True, size=[370, 379], quality=95, crop=["middle", "center"], upload_to="projects/%Y/%m")
+    image_large = ResizedImageField(_("image large"), blank=True, null=True, size=[1100, 700], quality=95, crop=["middle", "center"], upload_to="projects/%Y/%m")
     is_top = models.BooleanField(_("project is top"), default=False)
     date = models.DateField(_("date"), default=timezone.now)
     duration = models.CharField(_("duration"), max_length=256)
@@ -128,5 +131,13 @@ class BlogComment(models.Model):
         return f"{self.name}"
     
 
+
+
+@receiver(m2m_changed, sender=Project.categories.through)
+def update_category_count(sender, instance, action, **kwargs):
+    if action == "post_add":
+        for category in instance.categories.all():
+            category.count += 1
+            category.save()
 
 
