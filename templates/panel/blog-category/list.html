@@ -8,7 +8,7 @@
 <div class="d-flex flex-column flex-root">
     <!--begin::Page-->
     <div class="d-flex flex-row flex-column-fluid page">
-        {% include 'panel/parts/aside.html' with menu_parent="product_category" menu_submenu="category-list" %}
+        {% include 'panel/parts/aside.html' with menu_parent="blog-category" menu_submenu="blog-category-list" %}
         <!--begin::Wrapper-->
         <div class="d-flex flex-column flex-row-fluid wrapper" id="kt_wrapper">
             {% include 'panel/parts/header.html' %}
@@ -78,15 +78,15 @@
                                     <tbody>
                                         {% for category in page_obj %}
                                         <tr>
-                                            <th scope="row"> <a href="">{{category.title|default_if_none:"-"|truncatewords:5}}</a> </th>
+                                            <th scope="row"> <a href="{% url 'panel:blog-category-update' category.id %}">{{category.title|default_if_none:"-"|truncatewords:5}}</a> </th>
                                             
                                             <td nowrap="nowrap">
 
-                                                <a href=""
+                                                <a href="{% url 'panel:blog-category-update' category.id %}"
                                                     class="btn btn-sm btn-clean btn-icon" title="Таҳрирлаш"> <i
                                                         class="la la-edit"></i>
                                                 </a>
-                                                <a href="" data-toggle="modal" data-target="#deleteModal"
+                                                <a href="{% url 'panel:blog-category-delete' category.id %}" data-toggle="modal" data-target="#deleteModal"
                                                     class="btn btn-sm btn-clean btn-icon removeButton" title="Ўчириш"> <i
                                                         class="la la-trash"></i>
                                                 </a>
@@ -108,7 +108,7 @@
                                                                     class="btn btn-outline-secondary mb-3 mr-3"
                                                                     data-dismiss="modal">Ортга қайтиш
                                                                 </button>
-                                                                <a href="" id="modalDeleteButton">
+                                                                <a href="{% url 'panel:blog-category-delete' category.id %}" id="modalDeleteButton">
                                                                     <button type="button" class="btn btn-danger mb-3">
                                                                         Ўчириш
                                                                     </button>
